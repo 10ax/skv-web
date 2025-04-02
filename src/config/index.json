@@ -1,57 +1,52 @@
 {
   "company": {
-    "name": "React landing page 2021",
+    "name": "SKV Rent",
     "logo": "/assets/images/logo.png"
   },
   "navigation": [
     {
-      "name": "Product",
+      "name": "Il nostro noleggio",
       "href": "product"
     },
     {
-      "name": "Features",
+      "name": "Servizi",
       "href": "features"
     },
-
     {
-      "name": "Pricing",
+      "name": "Tariffe",
       "href": "pricing"
     },
     {
-      "name": "About",
+      "name": "Chi siamo",
       "href": "about"
     }
   ],
-  "callToAction": {
-    "text": "Get started",
-    "href": "#"
-  },
   "mainHero": {
-    "title": "Use me as your",
-    "subtitle": "landing page.",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-    "img": "/assets/images/happyTeam.jpeg",
+    "title": "Il tuo viaggio,",
+    "subtitle": "la nostra auto.",
+    "description": "Trova l’auto perfetta per il tuo viaggio in pochi click. Offriamo tariffe competitive, prenotazioni flessibili e un servizio affidabile. Parti senza pensieri e goditi la strada!",
+    "img": "/assets/images/josh-berquist-_4sWbzH5fp8-unsplash.jpg",
     "primaryAction": {
       "text": "Get started",
       "href": "#"
     },
     "secondaryAction": {
-      "text": "Email us",
-      "href": "mailto:issaafakattan@gmail.com?subject=I like react landing page!"
+      "text": "Scrivici",
+      "href": "mailto:skvrent@gmail.com"
     }
   },
   "product": {
-    "title": "React landing page 2021",
+    "title": "Scegli i servizi di SKV Rent",
     "items": [
       {
-        "title": "A plug n play template",
-        "description": "Just edit the config.json file with details about your company and voila your beautiful state of the art landing page is ready to go live! Remember to also update your assets, add any images you want to show to /assets/images and link them in the config.json",
-        "img": "/assets/images/product1.jpg"
+        "title": "Libertà su quattro ruote, ovunque tu vada",
+        "description": "Scegli l’auto perfetta per il tuo viaggio e goditi la libertà di esplorare senza limiti. Con il nostro servizio di noleggio affidabile e flessibile, hai sempre un’auto pronta per accompagnarti ovunque desideri, con comfort e sicurezza garantiti. Parti adesso, la strada ti aspetta!",
+        "img": "/assets/images/lorenzo-gerosa-i3RGGC1ouy4-unsplash.jpg"
       },
       {
-        "title": "Make it your own!",
-        "description": "Play around with the theme.ts file and configure the color palette to match the branding of your company! If you're feeling wild, maybe change some tailwind css as well!",
-        "img": "/assets/images/product2.jpg"
+        "title": "Esplora senza confini",
+        "description": "Immagina la libertà di viaggiare senza pensieri, con un'auto sempre pronta a portarti verso nuove avventure. Scegli la tua destinazione, noi ti forniamo l’auto perfetta per raggiungerla.",
+        "img": "/assets/images/grant-porter-O7qK1vQY3p0-unsplash.jpg"
       }
     ]
   },
@@ -100,7 +95,6 @@
         "name": "Pro",
         "price": "$15",
         "priceDetails": "per user",
-
         "features": [
           "5 users",
           "Priority Support",
