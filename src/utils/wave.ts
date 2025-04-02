@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus */
 class Wave {
-  private waveLength: number[];
+  private readonly waveLength: number[];
 
-  private color: string;
+  private readonly color: string;
 
   constructor(waveLength: number[], color: string) {
     this.waveLength = waveLength;
