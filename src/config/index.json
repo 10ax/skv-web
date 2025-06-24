@@ -27,11 +27,11 @@
     "description": "Trova l’auto perfetta per il tuo viaggio in pochi click. Offriamo tariffe competitive, prenotazioni flessibili e un servizio affidabile. Parti senza pensieri e goditi la strada!",
     "img": "/skv-web/assets/images/josh-berquist-_4sWbzH5fp8-unsplash.jpg",
     "primaryAction": {
-      "text": "Get started",
+      "text": "Esplora le auto",
       "href": "#"
     },
     "secondaryAction": {
-      "text": "Scrivici",
+      "text": "Contattaci",
       "href": "mailto:skvrent@gmail.com"
     }
   },

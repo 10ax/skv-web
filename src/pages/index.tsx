@@ -2,6 +2,7 @@ import React from 'react';
 
 import About from '../components/About';
 import Canvas from '../components/Canvas';
+import Contact from '../components/Contact';
 import Features from '../components/Features';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
@@ -32,9 +33,10 @@ const App = () => {
         </>
       </LazyShow>
       <LazyShow>
-        <>
-          <Features />
-        </>
+        <Features />
+      </LazyShow>
+      <LazyShow>
+        <Contact />
       </LazyShow>
       <LazyShow>
         <Pricing />
