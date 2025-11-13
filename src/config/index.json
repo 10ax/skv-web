@@ -1,7 +1,7 @@
 {
   "company": {
     "name": "SKV Rent",
-    "logo": "/skv-web/assets/images/skv-logo.png"
+    "logo": "/assets/images/skv-logo.png"
   },
   "navigation": [
     {
@@ -25,7 +25,7 @@
     "title": "Il tuo viaggio,",
     "subtitle": "la nostra auto.",
     "description": "Trova l’auto perfetta per il tuo viaggio in pochi click. Offriamo tariffe competitive, prenotazioni flessibili e un servizio affidabile. Parti senza pensieri e goditi la strada!",
-    "img": "/skv-web/assets/images/josh-berquist-_4sWbzH5fp8-unsplash.jpg",
+    "img": "/assets/images/josh-berquist-_4sWbzH5fp8-unsplash.jpg",
     "primaryAction": {
       "text": "Esplora veicoli",
       "href": "#"
@@ -41,12 +41,12 @@
       {
         "title": "Libertà su quattro ruote, ovunque tu vada",
         "description": "Scegli l’auto perfetta per il tuo viaggio e goditi la libertà di esplorare senza limiti. Con il nostro servizio di noleggio affidabile e flessibile, hai sempre un’auto pronta per accompagnarti ovunque desideri, con comfort e sicurezza garantiti. Parti adesso, la strada ti aspetta!",
-        "img": "/skv-web/assets/images/lorenzo-gerosa-i3RGGC1ouy4-unsplash.jpg"
+        "img": "/assets/images/lorenzo-gerosa-i3RGGC1ouy4-unsplash.jpg"
       },
       {
         "title": "Esplora senza confini",
         "description": "Immagina la libertà di viaggiare senza pensieri, con un'auto sempre pronta a portarti verso nuove avventure. Scegli la tua destinazione, noi ti forniamo l’auto perfetta per raggiungerla.",
-        "img": "/skv-web/assets/images/grant-porter-O7qK1vQY3p0-unsplash.jpg"
+        "img": "/assets/images/grant-porter-O7qK1vQY3p0-unsplash.jpg"
       }
     ]
   },
@@ -58,22 +58,22 @@
       {
         "name": "React.js",
         "description": "React is a free and open-source front-end JavaScript library for building user interfaces or UI components.",
-        "icon": "/skv-web/assets/images/react.png"
+        "icon": "/assets/images/react.png"
       },
       {
         "name": "Tailwind",
         "description": "Tailwind CSS is a highly customizable, low-level CSS framework for quickly creating beautiful designs without any annoying opinionated stylesheet nonsense.",
-        "icon": "/skv-web/assets/images/tailwindcss.svg"
+        "icon": "/assets/images/tailwindcss.svg"
       },
       {
         "name": "Next.js",
         "description": "Next.js is a framework for server-rendered React applications using Next.js.",
-        "icon": "/skv-web/assets/images/nextjs.svg"
+        "icon": "/assets/images/nextjs.svg"
       },
       {
         "name": "Typescript",
         "description": "TypeScript is a programming language developed and maintained by Microsoft.",
-        "icon": "/skv-web/assets/images/ts.png"
+        "icon": "/assets/images/ts.png"
       }
     ]
   },
