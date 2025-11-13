@@ -3,12 +3,10 @@ import React from 'react';
 import About from '../components/About';
 import Canvas from '../components/Canvas';
 import Contact from '../components/Contact';
-import Features from '../components/Features';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
-import Pricing from '../components/Pricing';
 import Product from '../components/Product';
 
 const App = () => {
@@ -33,13 +31,7 @@ const App = () => {
         </>
       </LazyShow>
       <LazyShow>
-        <Features />
-      </LazyShow>
-      <LazyShow>
         <Contact />
-      </LazyShow>
-      <LazyShow>
-        <Pricing />
       </LazyShow>
       <LazyShow>
         <>
