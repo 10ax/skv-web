@@ -86,7 +86,7 @@ const Contact = () => {
     
     setResult('Sending....');
     
-    formData.append('access_key', '70a69a85-3c89-4cbb-a177-3b06448be0b8');
+    formData.append('access_key', '1ead75c5-515f-4f38-bed9-0cbcf9502d88');
     formData.append('customer_type', activeTab);
 
     const response = await fetch('https://api.web3forms.com/submit', {
@@ -156,7 +156,6 @@ const Contact = () => {
             required
             pattern="(\+39\s?)?((3[0-9]{2}\s?\d{3}\s?\d{4})|(0[0-9]{1,3}\s?\d{3,4}\s?\d{3,4}))"
             title="Inserisci un numero di telefono italiano valido (es: +39 333 123 4567 o 02 1234567)"
-            placeholder="es: +39 333 123 4567"
             className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${errors.phone ? 'border-red-500' : 'border-border dark:border-gray-600'} rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
         {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
@@ -199,7 +198,6 @@ const Contact = () => {
             required
             pattern="[0-9]{11}"
             title="Inserisci una partita IVA italiana valida (11 cifre)"
-            placeholder="12345678901"
             maxLength={11}
             className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${errors.vat_number ? 'border-red-500' : 'border-border dark:border-gray-600'} rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
@@ -241,7 +239,6 @@ const Contact = () => {
             required
             pattern="(\+39\s?)?((3[0-9]{2}\s?\d{3}\s?\d{4})|(0[0-9]{1,3}\s?\d{3,4}\s?\d{3,4}))"
             title="Inserisci un numero di telefono italiano valido (es: +39 333 123 4567 o 02 1234567)"
-            placeholder="es: +39 333 123 4567"
             className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${errors.phone ? 'border-red-500' : 'border-border dark:border-gray-600'} rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
         {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
