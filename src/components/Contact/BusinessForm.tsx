@@ -36,7 +36,6 @@ const BusinessForm: React.FC<FormProps> = ({ errors }) => {
           required
           pattern="[0-9]{11}"
           title="Inserisci una partita IVA italiana valida (11 cifre)"
-          placeholder="12345678901"
           maxLength={11}
           className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${
             errors.vat_number
@@ -105,7 +104,6 @@ const BusinessForm: React.FC<FormProps> = ({ errors }) => {
           required
           pattern="(\+39\s?)?((3[0-9]{2}\s?\d{3}\s?\d{4})|(0[0-9]{1,3}\s?\d{3,4}\s?\d{3,4}))"
           title="Inserisci un numero di telefono italiano valido (es: +39 333 123 4567 o 02 1234567)"
-          placeholder="es: +39 333 123 4567"
           className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${
             errors.phone
               ? 'border-red-500'
