@@ -8,8 +8,8 @@ const structuredData = {
   '@type': 'AutoRental',
   name: 'SKV Rent',
   description: AppConfig.description,
-  url: 'https://skvrent.it',
-  logo: 'https://skvrent.it/assets/images/skv-logo.png',
+  url: 'https://skvrentsrls.it',
+  logo: 'https://skvrentsrls.it/assets/images/skv-logo.png',
   email: 'skvrent@gmail.com',
   // Add your actual address when available
   address: {
