@@ -1,0 +1,6 @@
+# SKV Rent - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://skvrent.it/sitemap.xml

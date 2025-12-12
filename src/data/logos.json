@@ -1,0 +1,152 @@
+[
+  {
+    "id": "1",
+    "src": "https://logo.clearbit.com/google.com",
+    "alt": "Google"
+  },
+  {
+    "id": "2",
+    "src": "https://logo.clearbit.com/microsoft.com",
+    "alt": "Microsoft"
+  },
+  {
+    "id": "3",
+    "src": "https://logo.clearbit.com/apple.com",
+    "alt": "Apple"
+  },
+  {
+    "id": "4",
+    "src": "https://logo.clearbit.com/amazon.com",
+    "alt": "Amazon"
+  },
+  {
+    "id": "5",
+    "src": "https://logo.clearbit.com/netflix.com",
+    "alt": "Netflix"
+  },
+  {
+    "id": "6",
+    "src": "https://logo.clearbit.com/meta.com",
+    "alt": "Meta"
+  },
+  {
+    "id": "7",
+    "src": "https://logo.clearbit.com/tesla.com",
+    "alt": "Tesla"
+  },
+  {
+    "id": "8",
+    "src": "https://logo.clearbit.com/stripe.com",
+    "alt": "Stripe"
+  },
+  {
+    "id": "9",
+    "src": "https://logo.clearbit.com/spotify.com",
+    "alt": "Spotify"
+  },
+  {
+    "id": "10",
+    "src": "https://logo.clearbit.com/airbnb.com",
+    "alt": "Airbnb"
+  },
+  {
+    "id": "11",
+    "src": "https://logo.clearbit.com/uber.com",
+    "alt": "Uber"
+  },
+  {
+    "id": "12",
+    "src": "https://logo.clearbit.com/slack.com",
+    "alt": "Slack"
+  },
+  {
+    "id": "13",
+    "src": "https://logo.clearbit.com/dropbox.com",
+    "alt": "Dropbox"
+  },
+  {
+    "id": "14",
+    "src": "https://logo.clearbit.com/adobe.com",
+    "alt": "Adobe"
+  },
+  {
+    "id": "15",
+    "src": "https://logo.clearbit.com/salesforce.com",
+    "alt": "Salesforce"
+  },
+  {
+    "id": "16",
+    "src": "https://logo.clearbit.com/oracle.com",
+    "alt": "Oracle"
+  },
+  {
+    "id": "17",
+    "src": "https://logo.clearbit.com/ibm.com",
+    "alt": "IBM"
+  },
+  {
+    "id": "18",
+    "src": "https://logo.clearbit.com/intel.com",
+    "alt": "Intel"
+  },
+  {
+    "id": "19",
+    "src": "https://logo.clearbit.com/nvidia.com",
+    "alt": "NVIDIA"
+  },
+  {
+    "id": "20",
+    "src": "https://logo.clearbit.com/github.com",
+    "alt": "GitHub"
+  },
+  {
+    "id": "21",
+    "src": "https://logo.clearbit.com/gitlab.com",
+    "alt": "GitLab"
+  },
+  {
+    "id": "22",
+    "src": "https://logo.clearbit.com/atlassian.com",
+    "alt": "Atlassian"
+  },
+  {
+    "id": "23",
+    "src": "https://logo.clearbit.com/zoom.us",
+    "alt": "Zoom"
+  },
+  {
+    "id": "24",
+    "src": "https://logo.clearbit.com/shopify.com",
+    "alt": "Shopify"
+  },
+  {
+    "id": "25",
+    "src": "https://logo.clearbit.com/twitter.com",
+    "alt": "Twitter"
+  },
+  {
+    "id": "26",
+    "src": "https://logo.clearbit.com/linkedin.com",
+    "alt": "LinkedIn"
+  },
+  {
+    "id": "27",
+    "src": "https://logo.clearbit.com/reddit.com",
+    "alt": "Reddit"
+  },
+  {
+    "id": "28",
+    "src": "https://logo.clearbit.com/discord.com",
+    "alt": "Discord"
+  },
+  {
+    "id": "29",
+    "src": "https://logo.clearbit.com/twitch.tv",
+    "alt": "Twitch"
+  },
+  {
+    "id": "30",
+    "src": "https://logo.clearbit.com/paypal.com",
+    "alt": "PayPal"
+  }
+]
