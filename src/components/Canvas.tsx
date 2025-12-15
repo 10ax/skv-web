@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import { CanvasContext } from '../hooks/useCanvas';
 import useResponsiveSize from '../hooks/useResponsiveSize';
@@ -16,13 +16,13 @@ const Canvas: FC = () => {
     if (ctx) setContext(ctx);
   }, []);
 
+  const contextValue = useMemo(() => ({ context }), [context]);
+
   return (
-    <>
-      <CanvasContext.Provider value={{ context }}>
-        <canvas id="canvas" ref={canvasRef} width={width} height={220}></canvas>
-        <Wave />
-      </CanvasContext.Provider>
-    </>
+    <CanvasContext.Provider value={contextValue}>
+      <canvas id="canvas" ref={canvasRef} width={width} height={220}></canvas>
+      <Wave />
+    </CanvasContext.Provider>
   );
 };
 

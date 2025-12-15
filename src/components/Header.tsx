@@ -1,7 +1,13 @@
 import React, { Fragment } from 'react';
 
-import { Popover, Transition } from '@headlessui/react';
+import {
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  Transition,
+} from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
 
 import config from '../config/index.json';
 
@@ -29,7 +35,12 @@ const Menu = () => {
           >
             <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
               <div className="flex items-center justify-between w-full md:w-auto">
-                <a href="#">
+                <Link
+                  href="/"
+                  aria-label={companyName}
+                  className="inline-flex"
+                  passHref={true}
+                >
                   <span className="sr-only">{companyName}</span>
                   <img
                     alt="logo"
@@ -41,14 +52,14 @@ const Menu = () => {
                     // @ts-expect-error fetchPriority is valid HTML but not yet in React types
                     fetchPriority="high"
                   />
-                </a>
+                </Link>
                 <div className="-mr-2 flex items-center md:hidden">
-                  <Popover.Button
+                  <PopoverButton
                     className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
                   >
                     <span className="sr-only">Open main menu</span>
                     <MenuIcon className="h-6 w-6" aria-hidden="true" />
-                  </Popover.Button>
+                  </PopoverButton>
                 </div>
               </div>
             </div>
@@ -75,7 +86,7 @@ const Menu = () => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Popover.Panel
+          <PopoverPanel
             focus
             className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
           >
@@ -95,12 +106,12 @@ const Menu = () => {
                   />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button
+                  <PopoverButton
                     className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
                   >
                     <span className="sr-only">Close main menu</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
-                  </Popover.Button>
+                  </PopoverButton>
                 </div>
               </div>
               <div className="px-2 pt-2 pb-3 space-y-1">
@@ -115,7 +126,7 @@ const Menu = () => {
                 ))}
               </div>
             </div>
-          </Popover.Panel>
+          </PopoverPanel>
         </Transition>
       </Popover>
     </>
