@@ -39,7 +39,12 @@ const App = () => {
           `,
         }}
       />
-      <Script strategy="lazyOnload" async src={GA_ADS_ID} crossOrigin="anonymous" />
+      <Script
+        strategy="lazyOnload"
+        async
+        src={GA_ADS_ID}
+        crossOrigin="anonymous"
+      />
     </>
   );
 };

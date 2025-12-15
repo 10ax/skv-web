@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { AppConfig } from '../utils/AppConfig';
 import config from '../config/index.json';
+import { AppConfig } from '../utils/AppConfig';
 
 const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
