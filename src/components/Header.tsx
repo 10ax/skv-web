@@ -49,7 +49,6 @@ const Menu = () => {
                     width={64}
                     height={64}
                     decoding="async"
-                    // @ts-expect-error fetchPriority is valid HTML but not yet in React types
                     fetchPriority="high"
                   />
                 </Link>
