@@ -11,6 +11,14 @@ import Link from 'next/link';
 
 import config from '../config/index.json';
 
+const withWidthVariant = (src: string, width: number, ext: 'png' | 'webp') => {
+  // Example: /assets/images/skv-logo.png -> /assets/images/skv-logo-64w.webp
+  // If the file already has a -<n>w suffix, replace it.
+  if (!src) return src;
+  if (!/\.(png|jpe?g|webp)$/i.test(src)) return src;
+  return src.replace(/(-\d+w)?\.(png|jpe?g|webp)$/i, `-${width}w.${ext}`);
+};
+
 const Menu = () => {
   const { navigation, company } = config;
   const { name: companyName, logo } = company;
@@ -42,15 +50,32 @@ const Menu = () => {
                   passHref={true}
                 >
                   <span className="sr-only">{companyName}</span>
-                  <img
-                    alt="logo"
-                    className="h-16 w-auto sm:h-16"
-                    src={logo}
-                    width={64}
-                    height={64}
-                    decoding="async"
-                    fetchPriority="high"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`${withWidthVariant(
+                        logo,
+                        64,
+                        'webp'
+                      )} 64w, ${withWidthVariant(logo, 128, 'webp')} 128w`}
+                      sizes="64px"
+                    />
+                    <img
+                      alt="logo"
+                      className="h-16 w-auto sm:h-16"
+                      src={withWidthVariant(logo, 64, 'png')}
+                      srcSet={`${withWidthVariant(
+                        logo,
+                        64,
+                        'png'
+                      )} 64w, ${withWidthVariant(logo, 128, 'png')} 128w`}
+                      sizes="64px"
+                      width={64}
+                      height={64}
+                      decoding="async"
+                      fetchPriority="high"
+                    />
+                  </picture>
                 </Link>
                 <div className="-mr-2 flex items-center md:hidden">
                   <PopoverButton
@@ -94,15 +119,32 @@ const Menu = () => {
             >
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
-                  <img
-                    className="h-8 w-auto"
-                    src={logo}
-                    alt=""
-                    width={32}
-                    height={32}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`${withWidthVariant(
+                        logo,
+                        32,
+                        'webp'
+                      )} 32w, ${withWidthVariant(logo, 64, 'webp')} 64w`}
+                      sizes="32px"
+                    />
+                    <img
+                      className="h-8 w-auto"
+                      src={withWidthVariant(logo, 32, 'png')}
+                      srcSet={`${withWidthVariant(
+                        logo,
+                        32,
+                        'png'
+                      )} 32w, ${withWidthVariant(logo, 64, 'png')} 64w`}
+                      sizes="32px"
+                      alt=""
+                      width={32}
+                      height={32}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
                 <div className="-mr-2">
                   <PopoverButton

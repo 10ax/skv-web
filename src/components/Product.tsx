@@ -5,6 +5,12 @@ import Divider from './Divider';
 
 const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
+const withKnownWidth = (src: string, width: number) => {
+  // Only rewrite sources that already include a -<n>w suffix.
+  if (!/-\d+w\.(png|jpe?g)$/i.test(src)) return src;
+  return src.replace(/-\d+w\.(png|jpe?g)$/i, `-${width}w.$1`);
+};
+
 const Product = () => {
   const { product } = config;
   const [firstItem, secondItem] = product.items;
@@ -55,13 +61,24 @@ const Product = () => {
           <div className={`w-full sm:w-1/2 p-6`}>
             {secondItem?.img ? (
               <picture>
-                <source type="image/webp" srcSet={toWebp(secondItem.img)} />
+                <source
+                  type="image/webp"
+                  srcSet={`${toWebp(
+                    withKnownWidth(secondItem.img, 640)
+                  )} 640w, ${toWebp(withKnownWidth(secondItem.img, 961))} 961w`}
+                  sizes="(min-width: 1024px) 512px, (min-width: 640px) 50vw, 100vw"
+                />
                 <img
                   className="h-6/6"
-                  src={secondItem.img}
+                  src={withKnownWidth(secondItem.img, 640)}
+                  srcSet={`${withKnownWidth(
+                    secondItem.img,
+                    640
+                  )} 640w, ${withKnownWidth(secondItem.img, 961)} 961w`}
+                  sizes="(min-width: 1024px) 512px, (min-width: 640px) 50vw, 100vw"
                   alt={secondItem?.title}
-                  width={961}
-                  height={1200}
+                  width={640}
+                  height={799}
                   loading="lazy"
                   decoding="async"
                 />
