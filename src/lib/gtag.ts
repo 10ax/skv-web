@@ -8,6 +8,9 @@ declare global {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
+  if (typeof window === 'undefined') return;
+  if (typeof window.gtag !== 'function' || !GA_TRACKING_ID) return;
+
   window.gtag('config', GA_TRACKING_ID, {
     page_path: url,
   });
@@ -25,6 +28,9 @@ export const event = ({
   label: any;
   value: any;
 }) => {
+  if (typeof window === 'undefined') return;
+  if (typeof window.gtag !== 'function' || !GA_TRACKING_ID) return;
+
   window.gtag('event', action, {
     event_category: category,
     event_label: label,

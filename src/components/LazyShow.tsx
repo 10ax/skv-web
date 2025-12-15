@@ -1,7 +1,5 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-import { motion, useAnimation } from 'framer-motion';
-
 function useOnScreen(
   ref: MutableRefObject<HTMLDivElement | null>,
   rootMargin = '0px'
@@ -9,10 +7,13 @@ function useOnScreen(
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
-    let currentRef: any = null;
+    let currentRef: HTMLDivElement | null = null;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) setIntersecting(entry?.isIntersecting);
+        if (entry?.isIntersecting) {
+          setIntersecting(true);
+          observer.disconnect();
+        }
       },
       {
         rootMargin,
@@ -23,7 +24,7 @@ function useOnScreen(
       observer.observe(currentRef);
     }
     return () => {
-      observer.unobserve(currentRef);
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, [ref, rootMargin]); // Empty array ensures that effect is only run on mount and unmount
 
@@ -31,30 +32,17 @@ function useOnScreen(
 }
 
 const LazyShow = ({ children }: { children: React.ReactChild }) => {
-  const controls = useAnimation();
   const rootRef = useRef<HTMLDivElement>(null);
   const onScreen = useOnScreen(rootRef);
-  useEffect(() => {
-    if (onScreen) {
-      controls.start({
-        x: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          ease: 'easeOut',
-        },
-      });
-    }
-  }, [onScreen, controls]);
   return (
-    <motion.div
-      className="lazy-div"
+    <div
+      className={`lazy-div transform-gpu transition duration-500 ease-out will-change-transform ${
+        onScreen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+      }`}
       ref={rootRef}
-      initial={{ opacity: 0, x: -50 }}
-      animate={controls}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 

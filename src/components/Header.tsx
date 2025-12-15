@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link } from 'react-scroll';
 
 import config from '../config/index.json';
 
@@ -32,7 +31,16 @@ const Menu = () => {
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#">
                   <span className="sr-only">{companyName}</span>
-                  <img alt="logo" className="h-16 w-auto sm:h-16" src={logo} />
+                  <img
+                    alt="logo"
+                    className="h-16 w-auto sm:h-16"
+                    src={logo}
+                    width={64}
+                    height={64}
+                    decoding="async"
+                    // @ts-expect-error fetchPriority is valid HTML but not yet in React types
+                    fetchPriority="high"
+                  />
                 </a>
                 <div className="-mr-2 flex items-center md:hidden">
                   <Popover.Button
@@ -46,17 +54,13 @@ const Menu = () => {
             </div>
             <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
               {navigation.map((item) => (
-                <Link
-                  spy={true}
-                  active="active"
-                  smooth={true}
-                  duration={1000}
+                <a
                   key={item.name}
-                  to={item.href}
+                  href={`#${item.href}`}
                   className="font-medium text-gray-500 hover:text-gray-900"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
           </nav>
@@ -80,7 +84,15 @@ const Menu = () => {
             >
               <div className="px-5 pt-4 flex items-center justify-between">
                 <div>
-                  <img className="h-8 w-auto" src={logo} alt="" />
+                  <img
+                    className="h-8 w-auto"
+                    src={logo}
+                    alt=""
+                    width={32}
+                    height={32}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="-mr-2">
                   <Popover.Button
@@ -93,17 +105,13 @@ const Menu = () => {
               </div>
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map((item) => (
-                  <Link
-                    spy={true}
-                    active="active"
-                    smooth={true}
-                    duration={1000}
+                  <a
                     key={item.name}
-                    to={item.href}
+                    href={`#${item.href}`}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>

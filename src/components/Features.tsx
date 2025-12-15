@@ -34,6 +34,10 @@ const Features = () => {
                       className={`inline-block h-6 w-6 rounded-full`}
                       src={feature.icon}
                       alt={feature.name}
+                      loading="lazy"
+                      decoding="async"
+                      width={24}
+                      height={24}
                     />
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">

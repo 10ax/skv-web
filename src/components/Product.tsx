@@ -3,6 +3,8 @@ import React from 'react';
 import config from '../config/index.json';
 import Divider from './Divider';
 
+const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
+
 const Product = () => {
   const { product } = config;
   const [firstItem, secondItem] = product.items;
@@ -33,20 +35,38 @@ const Product = () => {
             <p className={`text-gray-600`}>{firstItem?.description}</p>
           </div>
           <div className={`w-full sm:w-1/2 p-6`}>
-            <img
-              className="h-6/6"
-              src={firstItem?.img}
-              alt={firstItem?.title}
-            />
+            {firstItem?.img ? (
+              <picture>
+                <source type="image/webp" srcSet={toWebp(firstItem.img)} />
+                <img
+                  className="h-6/6"
+                  src={firstItem.img}
+                  alt={firstItem?.title}
+                  width={640}
+                  height={960}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            ) : null}
           </div>
         </div>
         <div className={`flex flex-wrap flex-col-reverse sm:flex-row`}>
           <div className={`w-full sm:w-1/2 p-6`}>
-            <img
-              className="h-6/6"
-              src={secondItem?.img}
-              alt={secondItem?.title}
-            />
+            {secondItem?.img ? (
+              <picture>
+                <source type="image/webp" srcSet={toWebp(secondItem.img)} />
+                <img
+                  className="h-6/6"
+                  src={secondItem.img}
+                  alt={secondItem?.title}
+                  width={961}
+                  height={1200}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            ) : null}
           </div>
           <div className={`w-full sm:w-1/2 p-6 mt-20`}>
             <div className={`align-middle`}>

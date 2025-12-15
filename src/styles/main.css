@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 :root {
   --color-primary: #ec4755;
   --color-secondary: #a12c34;

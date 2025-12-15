@@ -1,6 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 import { AppConfig } from '../utils/AppConfig';
+import config from '../config/index.json';
+
+const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
 // Structured data for local business SEO
 const structuredData = {
@@ -35,6 +38,12 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale}>
         <Head>
+          <link
+            rel="preload"
+            as="image"
+            href={toWebp(config.mainHero.img)}
+            type="image/webp"
+          />
           {/* Favicon */}
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <link
