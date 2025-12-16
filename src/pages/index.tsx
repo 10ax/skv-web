@@ -1,13 +1,16 @@
 import React from 'react';
 
-import About from '../components/About';
+import dynamic from 'next/dynamic';
+
 import Canvas from '../components/Canvas';
-import Contact from '../components/Contact';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
-import Product from '../components/Product';
+
+const Product = dynamic(() => import('../components/Product'));
+const Contact = dynamic(() => import('../components/Contact'));
+const About = dynamic(() => import('../components/About'));
 
 const App = () => {
   return (
