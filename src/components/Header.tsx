@@ -5,7 +5,7 @@ import Link from 'next/link';
 import config from '../config/index.json';
 
 const withWidthVariant = (src: string, width: number, ext: 'png' | 'webp') => {
-  // Example: /assets/images/skv-logo.png -> /assets/images/skv-logo-64w.webp
+  // Example: /assets/images/skv-logo.webp -> /assets/images/skv-logo-64w.webp
   // If the file already has a -<n>w suffix, replace it.
   if (!src) return src;
   if (!/\.(png|jpe?g|webp)$/i.test(src)) return src;
@@ -71,12 +71,12 @@ const Menu = () => {
                   <img
                     alt="logo"
                     className="h-16 w-auto sm:h-16"
-                    src={withWidthVariant(logo, 64, 'png')}
+                    src={withWidthVariant(logo, 64, 'webp')}
                     srcSet={`${withWidthVariant(
                       logo,
                       64,
-                      'png'
-                    )} 64w, ${withWidthVariant(logo, 128, 'png')} 128w`}
+                      'webp'
+                    )} 64w, ${withWidthVariant(logo, 128, 'webp')} 128w`}
                     sizes="64px"
                     width={64}
                     height={64}
@@ -165,12 +165,12 @@ const Menu = () => {
                     />
                     <img
                       className="h-8 w-auto"
-                      src={withWidthVariant(logo, 32, 'png')}
+                      src={withWidthVariant(logo, 32, 'webp')}
                       srcSet={`${withWidthVariant(
                         logo,
                         32,
-                        'png'
-                      )} 32w, ${withWidthVariant(logo, 64, 'png')} 64w`}
+                        'webp'
+                      )} 32w, ${withWidthVariant(logo, 64, 'webp')} 64w`}
                       sizes="32px"
                       alt=""
                       width={32}

@@ -12,7 +12,7 @@ const structuredData = {
   name: 'SKV Rent',
   description: AppConfig.description,
   url: 'https://skvrentsrls.it',
-  logo: 'https://skvrentsrls.it/assets/images/skv-logo.png',
+  logo: 'https://skvrentsrls.it/assets/images/skv-logo.webp',
   email: 'skvrent@gmail.com',
   // Add your actual address when available
   address: {

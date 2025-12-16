@@ -5,5 +5,5 @@ export const AppConfig = {
     "SKV Rent offre noleggio auto affidabile in Italia. Tariffe competitive, prenotazioni flessibili e servizio professionale. Trova l'auto perfetta per il tuo viaggio!",
   locale: 'it',
   url: 'https://skvrentsrls.it',
-  ogImage: '/assets/images/skv-logo.png',
+  ogImage: '/assets/images/skv-logo.webp',
 };

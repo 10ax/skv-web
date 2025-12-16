@@ -7,8 +7,8 @@ const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
 const withKnownWidth = (src: string, width: number) => {
   // Only rewrite sources that already include a -<n>w suffix.
-  if (!/-\d+w\.(png|jpe?g)$/i.test(src)) return src;
-  return src.replace(/-\d+w\.(png|jpe?g)$/i, `-${width}w.$1`);
+  if (!/-\d+w\.(png|jpe?g|webp)$/i.test(src)) return src;
+  return src.replace(/-\d+w\.(png|jpe?g|webp)$/i, `-${width}w.$1`);
 };
 
 const Product = () => {
