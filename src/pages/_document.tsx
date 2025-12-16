@@ -38,6 +38,39 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale}>
         <Head>
+          <meta name="description" content={AppConfig.description} />
+          <link rel="canonical" href={AppConfig.url} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:locale" content={AppConfig.locale} />
+          <meta property="og:url" content={AppConfig.url} />
+          <meta property="og:site_name" content={AppConfig.site_name} />
+          <meta property="og:title" content={AppConfig.title} />
+          <meta property="og:description" content={AppConfig.description} />
+          <meta
+            property="og:image"
+            content={`${AppConfig.url}${AppConfig.ogImage}`}
+          />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:alt" content="SKV Rent - Noleggio Auto" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@skvrent" />
+          <meta name="twitter:creator" content="@skvrent" />
+          <meta name="twitter:title" content={AppConfig.title} />
+          <meta name="twitter:description" content={AppConfig.description} />
+          <meta
+            name="twitter:image"
+            content={`${AppConfig.url}${AppConfig.ogImage}`}
+          />
+
+          <meta
+            name="keywords"
+            content="SKV Rent, noleggio auto, noleggio auto Italia, affitto auto, car rental Italy, autonoleggio"
+          />
+          <meta name="author" content="SKV Rent s.r.l." />
+
           <link
             rel="preload"
             as="image"
