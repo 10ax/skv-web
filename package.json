@@ -18,8 +18,7 @@
     "next": "^15.1.0",
     "next-seo": "^6.6.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "styled-jsx-plugin-postcss": "^4.0.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.26.0",
