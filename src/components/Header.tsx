@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -16,18 +16,19 @@ const Menu = () => {
   const { navigation, company } = config;
   const { name: companyName, logo } = company;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuId = useId();
+  const menuId = 'mobile-menu';
 
   useEffect(() => {
-    if (!isMenuOpen) return;
-
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsMenuOpen(false);
     };
 
-    window.addEventListener('keydown', onKeyDown);
+    if (isMenuOpen) {
+      globalThis.addEventListener('keydown', onKeyDown);
+    }
+
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      globalThis.removeEventListener('keydown', onKeyDown);
     };
   }, [isMenuOpen]);
 
@@ -50,7 +51,12 @@ const Menu = () => {
         >
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div className="flex items-center justify-between w-full md:w-auto">
-              <Link href="/" aria-label={companyName} className="inline-flex">
+              <Link
+                href="/"
+                aria-label={companyName}
+                className="inline-flex"
+                passHref={true}
+              >
                 <span className="sr-only">{companyName}</span>
                 <picture>
                   <source
