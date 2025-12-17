@@ -13,7 +13,7 @@ const structuredData = {
   description: AppConfig.description,
   url: 'https://skvrentsrls.it',
   logo: 'https://skvrentsrls.it/assets/images/skv-logo.webp',
-  email: 'skvrent@gmail.com',
+  email: 'skvrent96@gmail.com',
   // Add your actual address when available
   address: {
     '@type': 'PostalAddress',
@@ -88,6 +88,12 @@ class MyDocument extends Document {
           <link
             rel="icon"
             type="image/png"
+            sizes="48x48"
+            href="/favicon-48x48.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
           />
@@ -96,6 +102,7 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/apple-touch-icon.png"
           />
+          <link rel="manifest" href="/site.webmanifest" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
