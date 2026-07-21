@@ -1,0 +1,18 @@
+{
+  "_comment": "Maps a car's `make` (see offers.json) to its brand logo asset. Sourced from Wikimedia Commons unless noted; Peugeot's current lion crest has no free-licensed vector on Commons so it's hosted on en.wikipedia.org under a non-free/fair-use rationale (nominative use to identify a brand SKV Rent offers).",
+  "logos": {
+    "Fiat": "fiat.svg",
+    "Toyota": "toyota.svg",
+    "Renault": "renault.svg",
+    "Peugeot": "peugeot.svg",
+    "Dacia": "dacia.svg",
+    "Volkswagen": "volkswagen.svg",
+    "Audi": "audi.svg",
+    "MG": "mg.svg",
+    "Skoda": "skoda.svg",
+    "Kia": "kia.svg",
+    "Seat": "seat.svg",
+    "Ford": "ford.svg",
+    "Land Rover": "land-rover.svg"
+  }
+}

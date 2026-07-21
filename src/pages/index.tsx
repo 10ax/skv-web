@@ -3,7 +3,6 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
-import Canvas from '../components/Canvas';
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
@@ -12,12 +11,15 @@ import { AppConfig } from '../utils/AppConfig';
 
 const Product = dynamic(() => import('../components/Product'));
 const Offers = dynamic(() => import('../components/Offers'));
+const BrandCarousel = dynamic(() => import('../components/BrandCarousel'));
 const Contact = dynamic(() => import('../components/Contact'));
 const About = dynamic(() => import('../components/About'));
 
 const App = () => {
   return (
-    <div className={`bg-background grid gap-y-16 overflow-hidden`}>
+    // grid-cols-1 caps the column at minmax(0, 1fr); without it the
+    // marquee's ~7500px un-clipped intrinsic width inflates this whole grid.
+    <div className={`bg-background grid grid-cols-1 gap-y-16 overflow-hidden`}>
       <Head>
         <title>{AppConfig.title}</title>
       </Head>
@@ -32,27 +34,20 @@ const App = () => {
         </div>
         <MainHeroImage />
       </div>
-      <Canvas />
       <LazyShow>
-        <>
-          <Product />
-          <Canvas />
-        </>
+        <Product />
       </LazyShow>
       <LazyShow>
         <>
+          <BrandCarousel />
           <Offers />
-          <Canvas />
         </>
       </LazyShow>
       <LazyShow>
         <Contact />
       </LazyShow>
       <LazyShow>
-        <>
-          <Canvas />
-          <About />
-        </>
+        <About />
       </LazyShow>
     </div>
   );

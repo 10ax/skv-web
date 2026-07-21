@@ -13,35 +13,35 @@
     "Sportive e Lusso"
   ],
   "cars": [
-    { "model": "Fiat Topolino", "price": 192.5, "category": "City car", "electric": true, "image": "/assets/images/offers/fiat-topolino.webp" },
-    { "model": "Toyota Aygo X", "price": 257.09, "category": "City car", "image": "/assets/images/offers/toyota-aygo-x.webp" },
-    { "model": "Fiat Panda", "price": 260.5, "category": "City car", "image": "/assets/images/offers/fiat-panda.webp" },
+    { "model": "Fiat Topolino", "make": "Fiat", "price": 192.5, "category": "City car", "electric": true, "image": "/assets/images/offers/fiat-topolino.webp" },
+    { "model": "Toyota Aygo X", "make": "Toyota", "price": 257.09, "category": "City car", "image": "/assets/images/offers/toyota-aygo-x.webp" },
+    { "model": "Fiat Panda", "make": "Fiat", "price": 260.5, "category": "City car", "image": "/assets/images/offers/fiat-panda.webp" },
 
-    { "model": "Renault Clio 2024", "price": 268.0, "category": "Utilitarie", "image": "/assets/images/offers/renault-clio-2024.webp" },
-    { "model": "Peugeot 208", "price": 285.5, "category": "Utilitarie", "image": "/assets/images/offers/peugeot-208.webp" },
-    { "model": "Dacia Sandero Stepway", "price": 287.67, "category": "Utilitarie", "image": "/assets/images/offers/dacia-sandero-stepway.webp" },
+    { "model": "Renault Clio 2024", "make": "Renault", "price": 268.0, "category": "Utilitarie", "image": "/assets/images/offers/renault-clio-2024.webp" },
+    { "model": "Peugeot 208", "make": "Peugeot", "price": 285.5, "category": "Utilitarie", "image": "/assets/images/offers/peugeot-208.webp" },
+    { "model": "Dacia Sandero Stepway", "make": "Dacia", "price": 287.67, "category": "Utilitarie", "image": "/assets/images/offers/dacia-sandero-stepway.webp" },
 
-    { "model": "Volkswagen Golf", "price": 421.5, "category": "Berline e hatchback", "image": "/assets/images/offers/vw-golf.webp" },
-    { "model": "Audi A3 SPB", "price": 450.5, "category": "Berline e hatchback", "image": "/assets/images/offers/audi-a3-spb.webp" },
-    { "model": "MG 4", "price": 481.0, "category": "Berline e hatchback", "electric": true, "image": "/assets/images/offers/mg-4.webp" },
+    { "model": "Volkswagen Golf", "make": "Volkswagen", "price": 421.5, "category": "Berline e hatchback", "image": "/assets/images/offers/vw-golf.webp" },
+    { "model": "Audi A3 SPB", "make": "Audi", "price": 450.5, "category": "Berline e hatchback", "image": "/assets/images/offers/audi-a3-spb.webp" },
+    { "model": "MG 4", "make": "MG", "price": 481.0, "category": "Berline e hatchback", "electric": true, "image": "/assets/images/offers/mg-4.webp" },
 
-    { "model": "Skoda Octavia Wagon", "price": 392.84, "category": "Station Wagon", "image": "/assets/images/offers/skoda-octavia-wagon.webp" },
-    { "model": "Peugeot 308 SW", "price": 394.78, "category": "Station Wagon", "image": "/assets/images/offers/peugeot-308-sw.webp" },
-    { "model": "Volkswagen Passat Variant", "price": 509.0, "category": "Station Wagon", "image": "/assets/images/offers/vw-passat-variant.webp" },
+    { "model": "Skoda Octavia Wagon", "make": "Skoda", "price": 392.84, "category": "Station Wagon", "image": "/assets/images/offers/skoda-octavia-wagon.webp" },
+    { "model": "Peugeot 308 SW", "make": "Peugeot", "price": 394.78, "category": "Station Wagon", "image": "/assets/images/offers/peugeot-308-sw.webp" },
+    { "model": "Volkswagen Passat Variant", "make": "Volkswagen", "price": 509.0, "category": "Station Wagon", "image": "/assets/images/offers/vw-passat-variant.webp" },
 
-    { "model": "Kia Stonic", "price": 291.5, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/kia-stonic.webp" },
-    { "model": "Seat Arona", "price": 305.67, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/seat-arona.webp" },
-    { "model": "Ford Puma 2025", "price": 309.5, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/ford-puma-2025.webp" },
+    { "model": "Kia Stonic", "make": "Kia", "price": 291.5, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/kia-stonic.webp" },
+    { "model": "Seat Arona", "make": "Seat", "price": 305.67, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/seat-arona.webp" },
+    { "model": "Ford Puma 2025", "make": "Ford", "price": 309.5, "category": "SUV e Crossover compatti", "image": "/assets/images/offers/ford-puma-2025.webp" },
 
-    { "model": "Renault Austral", "price": 411.34, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/renault-austral.webp" },
-    { "model": "MG HS", "price": 425.67, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/mg-hs.webp" },
-    { "model": "Toyota Corolla Cross", "price": 432.67, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/toyota-corolla-cross.webp" },
+    { "model": "Renault Austral", "make": "Renault", "price": 411.34, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/renault-austral.webp" },
+    { "model": "MG HS", "make": "MG", "price": 425.67, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/mg-hs.webp" },
+    { "model": "Toyota Corolla Cross", "make": "Toyota", "price": 432.67, "category": "SUV e Crossover medio-grandi", "image": "/assets/images/offers/toyota-corolla-cross.webp" },
 
-    { "model": "Volkswagen ID Buzz", "price": 717.0, "category": "Monovolume e Van", "electric": true, "image": "/assets/images/offers/vw-id-buzz.webp" },
+    { "model": "Volkswagen ID Buzz", "make": "Volkswagen", "price": 717.0, "category": "Monovolume e Van", "electric": true, "image": "/assets/images/offers/vw-id-buzz.webp" },
 
-    { "model": "Land Rover Evoque", "price": 772.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/land-rover-evoque.webp" },
-    { "model": "Audi S3", "price": 802.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/audi-s3.webp" },
-    { "model": "Land Rover Defender 110", "price": 1022.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/land-rover-defender-110.webp" }
+    { "model": "Land Rover Evoque", "make": "Land Rover", "price": 772.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/land-rover-evoque.webp" },
+    { "model": "Audi S3", "make": "Audi", "price": 802.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/audi-s3.webp" },
+    { "model": "Land Rover Defender 110", "make": "Land Rover", "price": 1022.34, "category": "Sportive e Lusso", "image": "/assets/images/offers/land-rover-defender-110.webp" }
   ],
   "imageCredits": {
     "_comment": "Provenance for src/../public/assets/images/offers/*.webp. PDF-sourced images are pre-existing SKV Rent promotional assets (PROMO.pdf) and need no attribution. Wikimedia Commons images are CC BY-SA and require photographer attribution if this page is published; manufacturer press images are free-for-editorial-use with no attribution required.",
