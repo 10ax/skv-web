@@ -19,7 +19,7 @@ and deployed on **Netlify**.
 ```bash
 npm run dev          # local dev server (http://localhost:3000)
 npm run build        # production build + static export → out/
-npm run build-prod   # clean + build + export (what Netlify runs: netlify.toml)
+npm run build-prod   # clean + build (static export happens in `build` via output:'export')
 npm run build-types  # tsc --noEmit type check
 npm run lint         # next lint
 ```

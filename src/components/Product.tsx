@@ -66,7 +66,7 @@ const Product = () => {
                   srcSet={`${toWebp(
                     withKnownWidth(secondItem.img, 640)
                   )} 640w, ${toWebp(withKnownWidth(secondItem.img, 961))} 961w`}
-                  sizes="(min-width: 1024px) 512px, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 480px, (min-width: 640px) calc(50vw - 80px), calc(100vw - 112px)"
                 />
                 <img
                   className="h-6/6"
@@ -75,7 +75,7 @@ const Product = () => {
                     secondItem.img,
                     640
                   )} 640w, ${withKnownWidth(secondItem.img, 961)} 961w`}
-                  sizes="(min-width: 1024px) 512px, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 480px, (min-width: 640px) calc(50vw - 80px), calc(100vw - 112px)"
                   alt={secondItem?.title}
                   width={640}
                   height={799}
