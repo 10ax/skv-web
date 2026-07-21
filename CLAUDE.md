@@ -21,8 +21,18 @@ npm run dev          # local dev server (http://localhost:3000)
 npm run build        # production build + static export → out/
 npm run build-prod   # clean + build (static export happens in `build` via output:'export')
 npm run build-types  # tsc --noEmit type check
-npm run lint         # ⚠️ broken on Next 16 (`next lint` was removed) — see Known issues
+npm run lint         # ESLint 9 (flat config in eslint.config.mjs)
+npm run lint:fix     # eslint . --fix
+npm run format       # prettier --write .
 ```
+
+### Linting — ESLint 9 flat config (`eslint.config.mjs`)
+`next lint` was removed in Next 16, so linting runs ESLint directly against
+`eslint.config.mjs`. It composes `eslint-config-next` (core-web-vitals + typescript),
+`import/order`, `eslint-plugin-unused-imports`, and Prettier (`eslint-plugin-prettier`,
+`singleQuote` + `trailingComma:'es5'` to preserve the repo's existing formatting). **airbnb was
+dropped** in the migration (no first-class flat-config support; its rules are largely Prettier's
+job). `next-env.d.ts` and the CJS root config files (`*.config.js`) have targeted overrides.
 
 ### Critical CSS is inlined at build (render-blocking fix)
 `next.config.js` sets `experimental.optimizeCss: true`, which inlines critical CSS into
@@ -158,10 +168,6 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 
 ## Known issues / cleanup backlog (not yet done)
 
-- **`npm run lint` is broken on Next 16** — `next lint` was removed, so the command now
-  misfires (treats "lint" as a build dir). Migrate to the ESLint CLI, which needs eslint 8/9 +
-  `eslint-config-next@16` (the repo is still pinned to eslint 7 / `eslint-config-next@12`).
-  Doesn't affect the build/export/deploy or `npm run build-types`.
 - **Dead nav link:** `config.navigation` still has "Servizi" → `#features`, but there is **no Features
   component** and nothing renders a `#features` section; `config.features` is unused English placeholder
   (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.

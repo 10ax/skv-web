@@ -1,5 +1,5 @@
-import offers from '../data/offers.json';
 import Divider from './Divider';
+import offers from '../data/offers.json';
 
 type Car = {
   model: string;

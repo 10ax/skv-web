@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });

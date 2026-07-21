@@ -1,5 +1,5 @@
-import config from '../config/index.json';
 import Divider from './Divider';
+import config from '../config/index.json';
 
 const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
