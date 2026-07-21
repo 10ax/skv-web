@@ -54,7 +54,13 @@ const About = () => {
           </a>
         </div>
         <div className="flex items-center mt-6">
-          <p className="mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50">
+          {/* suppressHydrationWarning: on a static export the build-time year
+              is baked into the HTML; a visitor in a later year would otherwise
+              trigger a React #418 text-content hydration mismatch. */}
+          <p
+            className="mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50"
+            suppressHydrationWarning
+          >
             &copy; {new Date().getFullYear()} SKV Rent s.r.l. - All rights
             reserved.
           </p>
