@@ -102,10 +102,9 @@ const Offers = () => {
         <Divider />
 
         <div className={`mt-8`}>
-          {groups.map(({ category, list }, index) => (
+          {groups.map(({ category, list }) => (
             <details
               key={category}
-              open={index === 0}
               className={`group border-b border-gray-200 py-2`}
             >
               <summary
