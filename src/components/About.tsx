@@ -5,7 +5,10 @@ import config from '../config/index.json';
 const About = () => {
   const { company, about } = config;
   const { logo, name: companyName } = company;
-  const { socialMedia, sections } = about;
+  const { socialMedia, sections, contact } = about;
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    contact.address
+  )}`;
 
   return (
     <div
@@ -25,20 +28,37 @@ const About = () => {
           />
         </div>
         <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-4 h-12">
-          {sections.map((section, index) => (
+          {sections.map((section) => (
             <a
-              key={`${section.name}-${index}`}
-              href={section.href}
+              key={section.href}
+              href={`#${section.href}`}
               className="hover:text-primary text-base cursor-pointer leading-4 text-gray-800 dark:text-gray-400 dark:hover:text-white"
             >
               {section.name}
             </a>
           ))}
         </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-600 dark:text-gray-400">
+          <a
+            href={mapsHref}
+            target="_blank"
+            rel="noreferrer"
+            className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+          >
+            {contact.address}
+          </a>
+          <a
+            href={`mailto:${contact.email}`}
+            className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+          >
+            {contact.email}
+          </a>
+          <span>{contact.hours}</span>
+        </div>
         <div className="flex items-center gap-x-8 mt-6 h-8">
           <a
-            aria-label="github"
-            href={socialMedia.github}
+            aria-label="Instagram"
+            href={socialMedia.instagram}
             target="_blank"
             rel="noreferrer"
           >

@@ -79,31 +79,18 @@
   },
   "about": {
     "sections": [
-      {
-        "name": "Something",
-        "href": "#",
-        "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-      },
-      {
-        "name": "Something",
-        "href": "#",
-        "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-      },
-      {
-        "name": "Something",
-        "href": "#",
-        "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-      },
-      {
-        "name": "Something",
-        "href": "#",
-        "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-      }
+      { "name": "Il nostro noleggio", "href": "product" },
+      { "name": "Offerte", "href": "offers" },
+      { "name": "Chi siamo", "href": "about" },
+      { "name": "Contatti", "href": "contact" }
     ],
+    "contact": {
+      "address": "Via Taverna Campanile, 260, 83024 Monteforte Irpino (AV)",
+      "email": "skvrent96@gmail.com",
+      "hours": "Lun–Ven, 9:00–18:00"
+    },
     "socialMedia": {
-      "github": "https://www.instagram.com/skv_rent_service/",
-      "twitter": "https://www.instagram.com/skv_rent_service/",
-      "linkedin": "https://www.instagram.com/skv_rent_service/"
+      "instagram": "https://www.instagram.com/skv_rent_service/"
     }
   }
 }
