@@ -121,7 +121,7 @@ const Contact = () => {
   };
 
   const renderContactFields = () => (
-    <div>
+    <>
       <div className="text-left">
         <label
           htmlFor="email"
@@ -188,7 +188,7 @@ const Contact = () => {
           className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none min-h-[140px]"
         ></textarea>
       </div>
-    </div>
+    </>
   );
 
   const renderPrivateForm = () => (
