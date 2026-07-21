@@ -11,6 +11,7 @@ import MainHeroImage from '../components/MainHeroImage';
 import { AppConfig } from '../utils/AppConfig';
 
 const Product = dynamic(() => import('../components/Product'));
+const Offers = dynamic(() => import('../components/Offers'));
 const Contact = dynamic(() => import('../components/Contact'));
 const About = dynamic(() => import('../components/About'));
 
@@ -35,6 +36,12 @@ const App = () => {
       <LazyShow>
         <>
           <Product />
+          <Canvas />
+        </>
+      </LazyShow>
+      <LazyShow>
+        <>
+          <Offers />
           <Canvas />
         </>
       </LazyShow>

@@ -31,3 +31,13 @@ a:hover {
 .content ul {
   @apply my-6;
 }
+
+/* Offers accordion (Tailwind 2 has no `open`/`group-open` variant or
+   arbitrary `[&::-webkit-details-marker]` selector, so handle these here). */
+#offers summary::-webkit-details-marker {
+  display: none;
+}
+
+#offers details[open] > summary .offers-chevron {
+  transform: rotate(180deg);
+}
