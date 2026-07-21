@@ -1,5 +1,3 @@
-import React from 'react';
-
 import config from '../config/index.json';
 
 const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');

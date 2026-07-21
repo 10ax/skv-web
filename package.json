@@ -13,8 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "^15.1.0",
-    "next": "^15.1.0",
+    "@next/eslint-plugin-next": "^16.2.10",
+    "next": "^16.2.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -26,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "autoprefixer": "^10.3.7",
+    "critters": "^0.0.23",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",

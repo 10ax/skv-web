@@ -1,5 +1,3 @@
-import React from 'react';
-
 import config from '../config/index.json';
 import Divider from './Divider';
 

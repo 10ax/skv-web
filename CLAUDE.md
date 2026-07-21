@@ -9,7 +9,7 @@ Marketing / landing site for **SKV Rent** — a car-rental & long-term-lease com
 Monteforte Irpino (AV), Italy. Single-page site (Italian language) built as a **static export**
 and deployed on **Netlify**.
 
-- **Next.js 15** using the **Pages Router** (`src/pages`), not the App Router.
+- **Next.js 16** using the **Pages Router** (`src/pages`), not the App Router.
 - **React 19**, **TypeScript**, **Tailwind CSS**.
 - Output is a fully static site (`output: 'export'` → `out/`). There is **no server runtime**:
   no API routes, no `getServerSideProps`, no Next `<Image>` optimization, no i18n routing.
@@ -21,8 +21,17 @@ npm run dev          # local dev server (http://localhost:3000)
 npm run build        # production build + static export → out/
 npm run build-prod   # clean + build (static export happens in `build` via output:'export')
 npm run build-types  # tsc --noEmit type check
-npm run lint         # next lint
+npm run lint         # ⚠️ broken on Next 16 (`next lint` was removed) — see Known issues
 ```
+
+### Critical CSS is inlined at build (render-blocking fix)
+`next.config.js` sets `experimental.optimizeCss: true`, which inlines critical CSS into
+`<head>` and loads the full stylesheet asynchronously (`media="print" onload=...` + a
+`<noscript>` fallback), removing the render-blocking stylesheet request. The **Pages-Router**
+path needs the **`critters`** devDependency at build time (`beasties` is App-Router-only, so it
+does *not* work here). With Turbopack the stylesheet now emits under `/_next/static/chunks/*.css`
+(still covered by netlify.toml's `/_next/static/*`). Note `critters` is deprecated upstream but
+runs build-time only (never shipped to the browser).
 
 Netlify config: `netlify.toml` (`publish = "out"`, immutable cache headers for `/assets/*`
 and `/_next/static/*`).
@@ -149,6 +158,10 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 
 ## Known issues / cleanup backlog (not yet done)
 
+- **`npm run lint` is broken on Next 16** — `next lint` was removed, so the command now
+  misfires (treats "lint" as a build dir). Migrate to the ESLint CLI, which needs eslint 8/9 +
+  `eslint-config-next@16` (the repo is still pinned to eslint 7 / `eslint-config-next@12`).
+  Doesn't affect the build/export/deploy or `npm run build-types`.
 - **Dead nav link:** `config.navigation` still has "Servizi" → `#features`, but there is **no Features
   component** and nothing renders a `#features` section; `config.features` is unused English placeholder
   (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import offers from '../data/offers.json';
 import Divider from './Divider';
 

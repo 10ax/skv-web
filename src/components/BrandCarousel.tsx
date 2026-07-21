@@ -1,5 +1,3 @@
-import React from 'react';
-
 import brandLogosData from '../data/brandLogos.json';
 import offers from '../data/offers.json';
 
