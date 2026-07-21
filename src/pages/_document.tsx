@@ -76,6 +76,11 @@ class MyDocument extends Document {
             as="image"
             href={toWebp(config.mainHero.img)}
             type="image/webp"
+            // fetchPriority isn't in the pinned @types/react 17 <link> types,
+            // but React 19 renders it (raises the LCP image request priority).
+            {...({
+              fetchPriority: 'high',
+            } as unknown as JSX.IntrinsicElements['link'])}
           />
           {/* Favicon */}
           <link rel="icon" href="/favicon.ico" sizes="any" />
