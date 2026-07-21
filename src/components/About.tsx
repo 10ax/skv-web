@@ -15,7 +15,7 @@ const About = () => {
       id="about"
       className="mx-auto container xl:px-20 lg:px-12 sm:px-6 px-4 py-12"
     >
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center text-center">
         <div>
           <img
             src={logo}
@@ -27,18 +27,18 @@ const About = () => {
             decoding="async"
           />
         </div>
-        <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-4 h-12">
+        <nav className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-8 sm:gap-x-10 gap-y-4 mt-6">
           {sections.map((section) => (
             <a
               key={section.href}
               href={`#${section.href}`}
-              className="hover:text-primary text-base cursor-pointer leading-4 text-gray-800 dark:text-gray-400 dark:hover:text-white"
+              className="hover:text-primary text-base cursor-pointer text-gray-800 dark:text-gray-400 dark:hover:text-white"
             >
               {section.name}
             </a>
           ))}
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-600 dark:text-gray-400">
+        </nav>
+        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-600 dark:text-gray-400">
           <a
             href={mapsHref}
             target="_blank"
@@ -55,7 +55,7 @@ const About = () => {
           </a>
           <span>{contact.hours}</span>
         </div>
-        <div className="flex items-center gap-x-8 mt-6 h-8">
+        <div className="flex items-center justify-center mt-6">
           <a
             aria-label="Instagram"
             href={socialMedia.instagram}
@@ -73,18 +73,16 @@ const About = () => {
             </svg>
           </a>
         </div>
-        <div className="flex items-center mt-6">
-          {/* suppressHydrationWarning: on a static export the build-time year
-              is baked into the HTML; a visitor in a later year would otherwise
-              trigger a React #418 text-content hydration mismatch. */}
-          <p
-            className="mt-6 text-xs lg:text-sm leading-none text-gray-900 dark:text-gray-50"
-            suppressHydrationWarning
-          >
-            &copy; {new Date().getFullYear()} SKV Rent s.r.l. - All rights
-            reserved.
-          </p>
-        </div>
+        {/* suppressHydrationWarning: on a static export the build-time year
+            is baked into the HTML; a visitor in a later year would otherwise
+            trigger a React #418 text-content hydration mismatch. */}
+        <p
+          className="mt-8 px-4 text-xs lg:text-sm leading-normal text-gray-900 dark:text-gray-50"
+          suppressHydrationWarning
+        >
+          &copy; {new Date().getFullYear()} SKV Rent s.r.l. - All rights
+          reserved.
+        </p>
       </div>
     </div>
   );
