@@ -127,6 +127,13 @@ uses `,` for decimals (see `formatPrice` in `Offers.tsx`) → `€1.455,00`, `�
   a responsive card grid (each card = **vehicle image + model + "da … al mese"**), and a
   "Richiedi un preventivo" CTA → `#contact`.
 - **To update prices / add or remove cars:** edit `offers.json` only.
+- **Syncing with `PROMO.pdf`:** `offers.json` is a **hand-curated subset** (~22 of the ~124 cars in
+  the PDF), each with a locally-sourced image + credit and a human-assigned category — so it is *not*
+  auto-generated. When a new `PROMO.pdf` lands, run **`scripts/sync-offers.sh`**: it reports price
+  changes for the cars you feature, cars that disappeared from the PDF, and new PDF cars (candidates);
+  `--apply` writes the price updates (surgical, prices only — never touches category/image/electric);
+  `--list-candidates` prints the full unfeatured list. Adding a new car is still manual (image + credit
+  + category). Requires `pdftotext` (poppler).
 
 ### Vehicle images (imagin.studio)
 - Each card shows a car render fetched at load time from **imagin.studio**:
