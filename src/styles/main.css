@@ -71,6 +71,11 @@ a:hover {
   animation-play-state: paused;
 }
 
+/* Used on mobile's second row so the two rows scroll toward each other. */
+.brand-marquee-track-reverse {
+  animation-direction: reverse;
+}
+
 @keyframes brand-marquee-scroll {
   from {
     transform: translateX(0);
