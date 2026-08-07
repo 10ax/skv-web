@@ -8,10 +8,11 @@ import MainHeroImage from '../components/MainHeroImage';
 import { AppConfig } from '../utils/AppConfig';
 
 const Product = dynamic(() => import('../components/Product'));
+const About = dynamic(() => import('../components/About'));
 const Offers = dynamic(() => import('../components/Offers'));
 const BrandCarousel = dynamic(() => import('../components/BrandCarousel'));
 const Contact = dynamic(() => import('../components/Contact'));
-const About = dynamic(() => import('../components/About'));
+const Footer = dynamic(() => import('../components/Footer'));
 
 const App = () => {
   return (
@@ -36,6 +37,9 @@ const App = () => {
         <Product />
       </LazyShow>
       <LazyShow>
+        <About />
+      </LazyShow>
+      <LazyShow>
         <>
           <BrandCarousel />
           <Offers />
@@ -45,7 +49,7 @@ const App = () => {
         <Contact />
       </LazyShow>
       <LazyShow>
-        <About />
+        <Footer />
       </LazyShow>
     </div>
   );

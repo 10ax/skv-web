@@ -49,7 +49,7 @@ and `/_next/static/*`).
 ## Architecture & conventions
 
 ### Content is data-driven — do not hardcode copy in components
-- **Site copy** lives in `src/config/index.json` (hero, navigation, product, about, SEO-ish text).
+- **Site copy** lives in `src/config/index.json` (hero, navigation, product, about, story, SEO-ish text).
   Components read it via `import config from '../config/index.json'`.
 - **Data collections** live in `src/data/*.json` (e.g. `logos.json`, `offers.json`).
 - To change text, prices, or lists, **edit the JSON** — not the component.
@@ -61,10 +61,15 @@ and `/_next/static/*`).
 - Page is composed in `src/pages/index.tsx`. Heavy/below-the-fold sections are `dynamic()`-imported
   and wrapped in `<LazyShow>` (IntersectionObserver fade-in). `<Canvas>` draws the decorative wave
   separators between sections.
+- **`About.tsx` vs `Footer.tsx`:** `About.tsx` is the real "Chi siamo" content section (`id="about"`,
+  copy from `config.story`), rendered right after `Product`. `Footer.tsx` is the page footer (logo,
+  in-page nav mirror, address/phone/email, social links, copyright) — it has **no** `id="about"` of its
+  own; don't reintroduce one, since the nav's "Chi siamo" link must land on the real content section,
+  not the footer.
 - Standard section shell:
   ```tsx
   <section className={`bg-background py-8`} id="section-id">
-    <h1 className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}>Title</h1>
+    <h2 className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}>Title</h2>
     <Divider />
     ...
   </section>
@@ -168,7 +173,7 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
   `loading="eager"`. Keep both in sync if the hero image changes.
 - **Static export + time/locale-dependent values cause React #418 hydration errors.** The build bakes a
   value into the HTML that the client then recomputes to something different. The copyright year in
-  `About.tsx` uses `suppressHydrationWarning` for exactly this reason. Apply the same guard (or render
+  `Footer.tsx` uses `suppressHydrationWarning` for exactly this reason. Apply the same guard (or render
   such values only in `useEffect`) for anything derived from `Date`/`Math.random`/locale at render time.
   (This is also why offer prices use a deterministic manual formatter — see above.)
 - New third-party origins get a `preconnect`/`dns-prefetch` in `_document.tsx` (e.g. `cdn.imagin.studio`).
@@ -179,8 +184,6 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
   component** and nothing renders a `#features` section; `config.features` is unused English placeholder
   (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.
   (The "Tariffe" → `#pricing` entry, `Pricing.tsx`, and `config.pricing` were removed.)
-- `config.about.sections` are placeholder ("Something" + Lorem Ipsum); `about.socialMedia` github/twitter/
-  linkedin all point to the Instagram URL.
 - `tailwind.config.js` uses the legacy Tailwind 2 style (`purge`, `mode: 'jit'`, `darkMode: true`) while
-  `About.tsx` uses `dark:` variants — dark mode is not really wired up. Revisit if dark mode is wanted.
+  `Footer.tsx` uses `dark:` variants — dark mode is not really wired up. Revisit if dark mode is wanted.
 ```
