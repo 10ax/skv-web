@@ -15,8 +15,8 @@ const MainHeroImage = () => {
           className="h-64 w-full object-cover sm:h-80 md:h-[26rem] lg:h-[32rem]"
           src={mainHero.img}
           alt="Noleggio auto SKV Rent"
-          width={960}
-          height={1200}
+          width={1200}
+          height={1440}
           loading="eager"
           decoding="async"
           fetchPriority="high"
