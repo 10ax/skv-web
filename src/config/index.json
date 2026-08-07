@@ -86,11 +86,13 @@
     ],
     "contact": {
       "address": "Via Taverna Campanile, 260, 83024 Monteforte Irpino (AV)",
-      "email": "skvrent96@gmail.com",
-      "hours": "Lun–Ven, 9:00–18:00"
+      "phone": "+39 377 357 5917",
+      "email": "skvrent96@gmail.com"
     },
     "socialMedia": {
-      "instagram": "https://www.instagram.com/skv_rent_service/"
+      "instagram": "https://www.instagram.com/skv_rent_service/",
+      "whatsapp": "https://wa.me/393773575917",
+      "facebook": "https://www.facebook.com/people/SKV-RENT/61573501378538/"
     }
   }
 }
