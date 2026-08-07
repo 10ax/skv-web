@@ -117,8 +117,7 @@ const Offers = () => {
                     <span className={`font-semibold text-primary`}>
                       {formatPrice(Math.min(...list.map((car) => car.price)))}
                     </span>{' '}
-                    al mese · {list.length}{' '}
-                    {list.length === 1 ? 'modello' : 'modelli'}
+                    al mese
                   </p>
                 </div>
                 <svg
