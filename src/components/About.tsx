@@ -6,7 +6,7 @@ const About = () => {
 
   return (
     <section className="bg-background py-8" id="about">
-      <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-primary">
+      <h2 className="w-full my-2 font-display text-5xl font-bold leading-tight text-center text-primary">
         {story.title}
       </h2>
       <Divider />

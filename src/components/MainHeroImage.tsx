@@ -6,11 +6,13 @@ const MainHeroImage = () => {
   const { mainHero } = config;
   const webpSrc = toWebp(mainHero.img);
   return (
-    <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+    <div
+      className={`relative overflow-hidden rounded-2xl border-l-8 border-l-primary shadow-xl`}
+    >
       <picture>
         <source type="image/webp" srcSet={webpSrc} />
         <img
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+          className="h-64 w-full object-cover sm:h-80 md:h-[26rem] lg:h-[32rem]"
           src={mainHero.img}
           alt="Noleggio auto SKV Rent"
           width={960}

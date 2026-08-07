@@ -88,7 +88,7 @@ const Offers = () => {
     <section className={`bg-background py-8`} id="offers">
       <div className={`container mx-auto max-w-6xl px-4`}>
         <h2
-          className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}
+          className={`w-full my-2 font-display text-5xl font-bold leading-tight text-center text-primary`}
         >
           {offers.title}
         </h2>
