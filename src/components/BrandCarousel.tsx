@@ -35,7 +35,7 @@ const LogoRow = ({ items, hidden }: { items: string[]; hidden: boolean }) => (
           alt={hidden ? '' : make}
           loading="lazy"
           decoding="async"
-          className="max-h-full max-w-full object-contain"
+          className="max-h-full max-w-full object-contain grayscale opacity-60 transition duration-300 hover:grayscale-0 hover:opacity-100"
         />
       </div>
     ))}

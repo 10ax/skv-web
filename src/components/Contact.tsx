@@ -139,7 +139,7 @@ const Contact = () => {
           className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${
             errors.email
               ? 'border-red-500'
-              : 'border-border dark:border-gray-600'
+              : 'border-gray-300 dark:border-gray-600'
           } rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
         {errors.email && (
@@ -164,7 +164,7 @@ const Contact = () => {
           className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${
             errors.phone
               ? 'border-red-500'
-              : 'border-border dark:border-gray-600'
+              : 'border-gray-300 dark:border-gray-600'
           } rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
         {errors.phone && (
@@ -185,7 +185,7 @@ const Contact = () => {
           required
           minLength={10}
           maxLength={1000}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none min-h-[140px]"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none min-h-[140px]"
         ></textarea>
       </div>
     </>
@@ -206,7 +206,7 @@ const Contact = () => {
           name="name"
           required
           minLength={2}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
       </div>
 
@@ -223,7 +223,7 @@ const Contact = () => {
           name="surname"
           required
           minLength={2}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
       </div>
 
@@ -246,7 +246,7 @@ const Contact = () => {
           name="company_name"
           required
           minLength={2}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
       </div>
 
@@ -268,7 +268,7 @@ const Contact = () => {
           className={`w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border ${
             errors.vat_number
               ? 'border-red-500'
-              : 'border-border dark:border-gray-600'
+              : 'border-gray-300 dark:border-gray-600'
           } rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary`}
         />
         {errors.vat_number && (
@@ -289,7 +289,7 @@ const Contact = () => {
           name="contact_person"
           required
           minLength={2}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
       </div>
 
@@ -306,7 +306,7 @@ const Contact = () => {
           name="address"
           required
           minLength={5}
-          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-border dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+          className="w-full py-3 px-4 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-base text-gray-900 dark:text-gray-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
         />
       </div>
 

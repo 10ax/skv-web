@@ -108,7 +108,19 @@ const Offers = () => {
               <summary
                 className={`flex cursor-pointer list-none items-center justify-between py-4`}
               >
-                <h3 className={`text-2xl font-bold text-border`}>{category}</h3>
+                <div>
+                  <h3 className={`text-2xl font-bold text-border`}>
+                    {category}
+                  </h3>
+                  <p className={`mt-1 text-sm text-gray-500`}>
+                    da{' '}
+                    <span className={`font-semibold text-primary`}>
+                      {formatPrice(Math.min(...list.map((car) => car.price)))}
+                    </span>{' '}
+                    al mese · {list.length}{' '}
+                    {list.length === 1 ? 'modello' : 'modelli'}
+                  </p>
+                </div>
                 <svg
                   className={`offers-chevron h-5 w-5 flex-shrink-0 text-primary transition-transform duration-300`}
                   viewBox="0 0 24 24"
