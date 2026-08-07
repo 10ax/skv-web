@@ -180,10 +180,6 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 
 ## Known issues / cleanup backlog (not yet done)
 
-- **Dead nav link:** `config.navigation` still has "Servizi" → `#features`, but there is **no Features
-  component** and nothing renders a `#features` section; `config.features` is unused English placeholder
-  (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.
-  (The "Tariffe" → `#pricing` entry, `Pricing.tsx`, and `config.pricing` were removed.)
 - `tailwind.config.js` uses the legacy Tailwind 2 style (`purge`, `mode: 'jit'`, `darkMode: true`) while
   `Footer.tsx` uses `dark:` variants — dark mode is not really wired up. Revisit if dark mode is wanted.
 ```
