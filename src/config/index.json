@@ -13,10 +13,6 @@
       "href": "offers"
     },
     {
-      "name": "Servizi",
-      "href": "features"
-    },
-    {
       "name": "Chi siamo",
       "href": "about"
     }
@@ -50,39 +46,24 @@
       }
     ]
   },
-  "features": {
-    "title": "Latest & greatest ",
-    "subtitle": "All the best technologies out there!",
-    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-    "items": [
-      {
-        "name": "React.js",
-        "description": "React is a free and open-source front-end JavaScript library for building user interfaces or UI components.",
-        "icon": "/assets/images/react.webp"
-      },
-      {
-        "name": "Tailwind",
-        "description": "Tailwind CSS is a highly customizable, low-level CSS framework for quickly creating beautiful designs without any annoying opinionated stylesheet nonsense.",
-        "icon": "/assets/images/tailwindcss.svg"
-      },
-      {
-        "name": "Next.js",
-        "description": "Next.js is a framework for server-rendered React applications using Next.js.",
-        "icon": "/assets/images/nextjs.svg"
-      },
-      {
-        "name": "Typescript",
-        "description": "TypeScript is a programming language developed and maintained by Microsoft.",
-        "icon": "/assets/images/ts.webp"
-      }
-    ]
-  },
   "about": {
     "sections": [
-      { "name": "Il nostro noleggio", "href": "product" },
-      { "name": "Offerte", "href": "offers" },
-      { "name": "Chi siamo", "href": "about" },
-      { "name": "Contatti", "href": "contact" }
+      {
+        "name": "Il nostro noleggio",
+        "href": "product"
+      },
+      {
+        "name": "Offerte",
+        "href": "offers"
+      },
+      {
+        "name": "Chi siamo",
+        "href": "about"
+      },
+      {
+        "name": "Contatti",
+        "href": "contact"
+      }
     ],
     "contact": {
       "address": "Via Taverna Campanile, 260, 83024 Monteforte Irpino (AV)",

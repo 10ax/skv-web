@@ -92,6 +92,8 @@ content-hashed. `netlify.toml` was removed on 2026-09-06: Netlify no longer serv
   in-page nav mirror, address/phone/email, social links, copyright) — it has **no** `id="about"` of its
   own; don't reintroduce one, since the nav's "Chi siamo" link must land on the real content section,
   not the footer.
+- Nav entries in `config.navigation` must point at a rendered `id`. "Servizi" → `#features` and the unused
+  `config.features` placeholder were removed on 2026-09-06 (as were "Tariffe"/`Pricing.tsx` earlier).
 - Standard section shell:
   ```tsx
   <section className={`bg-background py-8`} id="section-id">
@@ -222,10 +224,6 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 - **Image attribution:** `offers.json → imageCredits` marks several offer renders as Wikimedia Commons
   CC BY-SA, which requires visible photographer attribution while the page is public. Nothing on the page
   shows those credits yet.
-- **Dead nav link:** `config.navigation` still has "Servizi" → `#features`, but there is **no Features
-  component** and nothing renders a `#features` section; `config.features` is unused English placeholder
-  (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.
-  (The "Tariffe" → `#pricing` entry, `Pricing.tsx`, and `config.pricing` were removed.)
 - `tailwind.config.js` uses the legacy Tailwind 2 style (`purge`, `mode: 'jit'`, `darkMode: true`) while
   `Footer.tsx` uses `dark:` variants — dark mode is not really wired up. Revisit if dark mode is wanted.
 ```

@@ -112,8 +112,8 @@ const Footer = () => {
           className="mt-8 px-4 text-xs lg:text-sm leading-normal text-gray-900 dark:text-gray-50"
           suppressHydrationWarning
         >
-          &copy; {new Date().getFullYear()} SKV Rent s.r.l. - All rights
-          reserved.
+          &copy; {new Date().getFullYear()} SKV Rent s.r.l. Tutti i diritti
+          riservati.
         </p>
       </div>
     </div>
