@@ -9,6 +9,11 @@ const withKnownWidth = (src: string, width: number) => {
   return src.replace(/-\d+w\.(png|jpe?g|webp)$/i, `-${width}w.$1`);
 };
 
+// The photos are portrait originals; cropping them into a fixed landscape box
+// keeps each row's text and image at the same visual height instead of leaving
+// half the row empty next to a 700px-tall image.
+const imageClass = `w-full h-64 sm:h-80 lg:h-96 rounded-lg object-cover`;
+
 const Product = () => {
   const { product } = config;
   const [firstItem, secondItem] = product.items;
@@ -19,18 +24,11 @@ const Product = () => {
         <h2
           className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}
         >
-          {product.title.split(' ').map((word, index) => (
-            <span
-              key={`${word}-${index}`}
-              className={index % 2 ? 'text-primary' : 'text-border'}
-            >
-              {word}{' '}
-            </span>
-          ))}
+          {product.title}
         </h2>
         <Divider />
-        <div className={`flex flex-wrap`}>
-          <div className={`w-5/6 sm:w-1/2 p-6 mt-20`}>
+        <div className={`flex flex-wrap items-center`}>
+          <div className={`w-full sm:w-1/2 p-6`}>
             <h3
               className={`text-3xl text-gray-800 font-bold leading-none mb-3`}
             >
@@ -43,7 +41,7 @@ const Product = () => {
               <picture>
                 <source type="image/webp" srcSet={toWebp(firstItem.img)} />
                 <img
-                  className="h-6/6"
+                  className={imageClass}
                   src={firstItem.img}
                   alt={firstItem?.title}
                   width={640}
@@ -55,7 +53,9 @@ const Product = () => {
             ) : null}
           </div>
         </div>
-        <div className={`flex flex-wrap flex-col-reverse sm:flex-row`}>
+        <div
+          className={`flex flex-wrap flex-col-reverse sm:flex-row items-center`}
+        >
           <div className={`w-full sm:w-1/2 p-6`}>
             {secondItem?.img ? (
               <picture>
@@ -67,7 +67,7 @@ const Product = () => {
                   sizes="(min-width: 1024px) 480px, (min-width: 640px) calc(50vw - 80px), calc(100vw - 112px)"
                 />
                 <img
-                  className="h-6/6"
+                  className={imageClass}
                   src={withKnownWidth(secondItem.img, 640)}
                   srcSet={`${withKnownWidth(
                     secondItem.img,
@@ -83,15 +83,13 @@ const Product = () => {
               </picture>
             ) : null}
           </div>
-          <div className={`w-full sm:w-1/2 p-6 mt-20`}>
-            <div className={`align-middle`}>
-              <h3
-                className={`text-3xl text-gray-800 font-bold leading-none mb-3`}
-              >
-                {secondItem?.title}
-              </h3>
-              <p className={`text-gray-600 mb-8`}>{secondItem?.description}</p>
-            </div>
+          <div className={`w-full sm:w-1/2 p-6`}>
+            <h3
+              className={`text-3xl text-gray-800 font-bold leading-none mb-3`}
+            >
+              {secondItem?.title}
+            </h3>
+            <p className={`text-gray-600`}>{secondItem?.description}</p>
           </div>
         </div>
       </div>
