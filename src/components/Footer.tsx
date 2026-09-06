@@ -2,8 +2,8 @@ import config from '../config/index.json';
 
 const Footer = () => {
   const { company, about } = config;
-  const { logo, name: companyName } = company;
-  const { socialMedia, sections, contact } = about;
+  const { logo, name: companyName, legalName } = company;
+  const { socialMedia, sections, contact, legal } = about;
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     contact.address
   )}`;
@@ -105,14 +105,35 @@ const Footer = () => {
             </svg>
           </a>
         </div>
+        {/* Company identification required by art. 2250 c.c. and, for the VAT
+            number, art. 35 DPR 633/72. */}
+        <div className="mt-8 text-xs leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="font-semibold text-gray-800 dark:text-gray-300">
+            {legalName}
+          </p>
+          <p className="mt-1">{contact.address}</p>
+          <p className="mt-1 flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-4 gap-y-1">
+            <span>P. IVA e C.F. {legal.vatId}</span>
+            <span>REA {legal.rea}</span>
+            {legal.shareCapital ? (
+              <span>Capitale sociale {legal.shareCapital} i.v.</span>
+            ) : null}
+            <a
+              href={`mailto:${legal.pec}`}
+              className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+            >
+              PEC {legal.pec}
+            </a>
+          </p>
+        </div>
         {/* suppressHydrationWarning: on a static export the build-time year
             is baked into the HTML; a visitor in a later year would otherwise
             trigger a React #418 text-content hydration mismatch. */}
         <p
-          className="mt-8 px-4 text-xs lg:text-sm leading-normal text-gray-900 dark:text-gray-50"
+          className="mt-4 px-4 text-xs leading-normal text-gray-600 dark:text-gray-400"
           suppressHydrationWarning
         >
-          &copy; {new Date().getFullYear()} SKV Rent s.r.l. Tutti i diritti
+          &copy; {new Date().getFullYear()} {legalName}. Tutti i diritti
           riservati.
         </p>
       </div>

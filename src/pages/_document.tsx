@@ -10,11 +10,14 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'AutoRental',
   name: 'SKV Rent',
+  legalName: config.company.legalName,
+  vatID: `IT${config.about.legal.vatId}`,
+  taxID: config.about.legal.taxId,
   description: AppConfig.description,
   url: 'https://skvrentsrls.it',
   logo: 'https://skvrentsrls.it/assets/images/skv-logo.webp',
-  email: 'skvrent96@gmail.com',
-  // Add your actual address when available
+  email: config.about.contact.email,
+  telephone: config.about.contact.phone,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Via Taverna Campanile, 260',
@@ -69,7 +72,7 @@ class MyDocument extends Document {
             name="keywords"
             content="SKV Rent, noleggio auto, noleggio auto Italia, affitto auto, car rental Italy, autonoleggio"
           />
-          <meta name="author" content="SKV Rent s.r.l." />
+          <meta name="author" content={config.company.legalName} />
 
           <link
             rel="preload"

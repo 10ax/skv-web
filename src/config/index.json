@@ -1,7 +1,8 @@
 {
   "company": {
     "name": "SKV Rent",
-    "logo": "/assets/images/skv-logo.webp"
+    "logo": "/assets/images/skv-logo.webp",
+    "legalName": "SKV Rent S.r.l.s."
   },
   "navigation": [
     {
@@ -74,6 +75,13 @@
       "instagram": "https://www.instagram.com/skv_rent_service/",
       "whatsapp": "https://wa.me/393773575917",
       "facebook": "https://www.facebook.com/people/SKV-RENT/61573501378538/"
+    },
+    "legal": {
+      "vatId": "03194570648",
+      "taxId": "03194570648",
+      "rea": "AV-308010",
+      "pec": "skvrentsrls@pec.it",
+      "shareCapital": ""
     }
   },
   "story": {
