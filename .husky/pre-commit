@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # Disable concurrent so build-types runs after ESLint in lint-staged
-npx lint-staged --concurrent false
+pnpm exec lint-staged --concurrent false

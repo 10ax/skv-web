@@ -1,12 +1,13 @@
 {
   "name": "skv-web",
   "version": "1.0.0",
+  "packageManager": "pnpm@11.24.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build-stats": "cross-env ANALYZE=true npm run build",
-    "build-prod": "run-s clean build",
+    "build-stats": "cross-env ANALYZE=true pnpm run build",
+    "build-prod": "pnpm run clean && pnpm run build",
     "clean": "rimraf .next out",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -35,7 +36,6 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.5",
-    "npm-run-all": "^4.1.5",
     "postcss": "^8.3.11",
     "prettier": "^3.9.6",
     "rimraf": "^3.0.2",

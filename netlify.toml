@@ -1,6 +1,6 @@
 [build]
   publish = "out"
-  command = "npm run build-prod"
+  command = "pnpm run build-prod"
 
 [[headers]]
   for = "/assets/*"

@@ -1,0 +1,12 @@
+# pnpm 11 project settings. pnpm 11 no longer reads the package.json "pnpm" field
+# or non-auth keys from .npmrc — this file is the only place for project settings.
+#
+# Dependencies that ship install scripts must be reviewed explicitly (strictDepBuilds).
+# Both are denied on purpose:
+# - sharp: optional dep pulled in by Next for image optimization. Unused here
+#   (static export, no next/image) — see CLAUDE.md "Images".
+# - unrs-resolver: pulled in by eslint-import-resolver-typescript; its postinstall
+#   only downloads a native binary that is already provided by its optional deps.
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
