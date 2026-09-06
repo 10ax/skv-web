@@ -88,7 +88,7 @@ const Offers = () => {
     <section className={`bg-background py-8`} id="offers">
       <div className={`container mx-auto max-w-6xl px-4`}>
         <h2
-          className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}
+          className={`w-full my-2 font-display text-4xl font-bold leading-tight tracking-tight text-center text-border`}
         >
           {offers.title}
         </h2>
@@ -108,7 +108,9 @@ const Offers = () => {
               <summary
                 className={`flex cursor-pointer list-none items-center justify-between py-4`}
               >
-                <h3 className={`text-2xl font-bold text-border`}>{category}</h3>
+                <h3 className={`font-display text-2xl font-bold text-border`}>
+                  {category}
+                </h3>
                 <svg
                   className={`offers-chevron h-5 w-5 flex-shrink-0 text-primary transition-transform duration-300`}
                   viewBox="0 0 24 24"

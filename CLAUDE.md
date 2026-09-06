@@ -97,7 +97,7 @@ content-hashed. `netlify.toml` was removed on 2026-09-06: Netlify no longer serv
 - Standard section shell:
   ```tsx
   <section className={`bg-background py-8`} id="section-id">
-    <h2 className={`w-full my-2 text-5xl font-bold leading-tight text-center text-primary`}>Title</h2>
+    <h2 className={`w-full my-2 font-display text-4xl font-bold leading-tight tracking-tight text-center text-border`}>Title</h2>
     <Divider />
     ...
   </section>
@@ -116,6 +116,11 @@ accordion rules). Verify new classes actually render by grepping the built `out/
 - `primary` `#003cff` (blue, brand accent / CTAs), `secondary` `#0018a4` (hover), `tertiary` `#99a0a3`,
   `border` `#1a2e35` (near-black text), `background` `#ffffff`.
 - Prefer `text-primary`, `bg-background`, `text-border`, etc. over literal colors.
+- **Type:** headings (h1–h3) use `font-display` → **Sora** (variable weight, latin subset, OFL), self-hosted
+  through `next/font/local` in `_app.tsx` and exposed as `--font-display`; body copy stays on the system sans
+  stack (no extra font request). Section titles are `text-4xl` (36px) in `text-border`. The brand blue is
+  reserved for the hero accent phrase, CTAs, prices and the short solid `Divider` bar, not for every heading.
+  Font file + licence live in `src/fonts/`; swap the face by replacing the woff2 and the `src` in `_app.tsx`.
 - Note: the PROMO.pdf uses green for prices; on-site we use the **blue `primary`** for price emphasis
   to match the brand. EV models get a small green "Elettrica" badge.
 

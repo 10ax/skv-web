@@ -51,7 +51,7 @@ const Contact = () => {
   return (
     <div className="flex justify-center items-center p-8 bg-gray-100 dark:bg-gray-900">
       <div className="bg-background dark:bg-gray-800 p-10 rounded-xl shadow-lg max-w-2xl w-full text-center">
-        <h2 className="text-4xl font-bold mb-4 text-gray-800 dark:text-white">
+        <h2 className="font-display text-4xl font-bold tracking-tight mb-4 text-border dark:text-white">
           Contattaci
         </h2>
         <p className="mb-8 text-tertiary dark:text-gray-400">

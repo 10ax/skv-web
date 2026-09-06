@@ -16,6 +16,15 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      fontFamily: {
+        // Set by next/font/local in _app.tsx (Sora). Headings only.
+        display: [
+          'var(--font-display)',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+      },
       colors: {
         primary: '#003cff',
         secondary: '#0018a4',
