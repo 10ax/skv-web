@@ -7,7 +7,7 @@ consistent with decisions already made. Keep this file up to date when a convent
 
 Marketing / landing site for **SKV Rent** — a car-rental & long-term-lease company in
 Monteforte Irpino (AV), Italy. Single-page site (Italian language) built as a **static export**
-and deployed on **Netlify**.
+and deployed on **GitHub Pages** (custom domain `skvrentsrls.it`, see "Hosting" below).
 
 - **Next.js 16** using the **Pages Router** (`src/pages`), not the App Router.
 - **React 19**, **TypeScript**, **Tailwind CSS**.
@@ -19,7 +19,7 @@ and deployed on **Netlify**.
 The package manager is **pnpm** (details below) — use `pnpm`, never `npm`, `npx` or `yarn`.
 
 ```bash
-pnpm install         # install deps (CI and Netlify run `pnpm install --frozen-lockfile`)
+pnpm install         # install deps (CI runs `pnpm install --frozen-lockfile`)
 pnpm run dev         # local dev server (http://localhost:3000)
 pnpm run build       # production build + static export → out/
 pnpm run build-prod  # clean + build (static export happens in `build` via output:'export')
@@ -33,7 +33,7 @@ pnpm run format      # prettier --write .
 - The version is pinned by `package.json → "packageManager": "pnpm@11.24.0"` (corepack). The lockfile is
   `pnpm-lock.yaml`, imported 1:1 from the old `package-lock.json` (same resolved versions); the old
   `yarn.lock` was a stale leftover and is gone. Node is pinned to **22** by `.node-version` (read by
-  Netlify, nvm, mise and the GitHub workflow) — pnpm 11 needs Node ≥ 22.13, Next 16 needs ≥ 20.9.
+  nvm, mise and the GitHub workflow) — pnpm 11 needs Node ≥ 22.13, Next 16 needs ≥ 20.9.
 - **Project settings live in `pnpm-workspace.yaml`** — pnpm 11 ignores a `"pnpm"` field in package.json
   and non-auth keys in `.npmrc`. Right now it only holds `allowBuilds`: pnpm 11 refuses to install
   (`ERR_PNPM_IGNORED_BUILDS`; and since every `pnpm run` re-verifies deps, all scripts fail too) until
@@ -43,8 +43,7 @@ pnpm run format      # prettier --write .
 - **`npm-run-all` was removed**: its `run-s` spawns `$npm_execpath` directly and dies with `EACCES`
   under corepack's `pnpm.cjs`. `build-prod` is now `pnpm run clean && pnpm run build`. Don't re-add it
   (`npm-run-all2` is the pnpm-compatible fork if a runner is ever needed).
-- Netlify detects `pnpm-lock.yaml` on its own and honours `packageManager`; `netlify.toml` runs
-  `pnpm run build-prod`. The GitHub Pages workflow uses `pnpm/action-setup@v4` (version from
+- The GitHub Pages workflow (the only deploy path) uses `pnpm/action-setup@v4` (version from
   `packageManager`) + `pnpm install --frozen-lockfile`. Husky's pre-commit runs `pnpm exec lint-staged`,
   which calls `pnpm run build-types`.
 
@@ -61,12 +60,17 @@ job). `next-env.d.ts` and the CJS root config files (`*.config.js`) have targete
 `<head>` and loads the full stylesheet asynchronously (`media="print" onload=...` + a
 `<noscript>` fallback), removing the render-blocking stylesheet request. The **Pages-Router**
 path needs the **`critters`** devDependency at build time (`beasties` is App-Router-only, so it
-does *not* work here). With Turbopack the stylesheet now emits under `/_next/static/chunks/*.css`
-(still covered by netlify.toml's `/_next/static/*`). Note `critters` is deprecated upstream but
+does *not* work here). With Turbopack the stylesheet now emits under `/_next/static/chunks/*.css`. Note `critters` is deprecated upstream but
 runs build-time only (never shipped to the browser).
 
-Netlify config: `netlify.toml` (`publish = "out"`, immutable cache headers for `/assets/*`
-and `/_next/static/*`).
+### Hosting — GitHub Pages (not Netlify)
+Production `https://skvrentsrls.it` is served by **GitHub Pages**: DNS points at GitHub's Pages IPs and
+responses carry `server: GitHub.com`. Every push to `main` deploys through
+`.github/workflows/nextjs.yml` (build → upload `out/` → `actions/deploy-pages`). The custom domain lives
+in the repo's Pages settings (`build_type: workflow`, `cname: skvrentsrls.it`), so no `CNAME` file is
+needed in `public/`. `https_enforced` is still **off** in those settings — worth enabling. Pages sets its
+own `cache-control` (no custom headers), which is fine because `/_next/static` filenames are
+content-hashed. `netlify.toml` was removed on 2026-09-06: Netlify no longer serves the site.
 
 ## Architecture & conventions
 
@@ -208,7 +212,7 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
   `landing-page-conversion-audit` (github/awesome-copilot) for CRO reviews of the landing page, and
   `performance-optimization` (addyosmani/agent-skills) for Lighthouse / Core Web Vitals work.
 - Site-wide Lighthouse: **unlighthouse** is installed globally (`pnpm add -g unlighthouse`), deliberately not
-  as a devDependency (it would drag puppeteer into every Netlify install). Interactive report:
+  as a devDependency (it would drag puppeteer into every CI install). Interactive report:
   `unlighthouse --site https://skvrentsrls.it`; pass/fail gate: `unlighthouse-ci --site https://skvrentsrls.it --budget 90`.
 - `observability/affordance-invocations.json` is a log written by the ai-literacy-superpowers plugin hooks;
   it is not part of the site and is not committed.

@@ -1,7 +1,7 @@
 # SKV Rent Web - Copilot Instructions
 
 ## Project Overview
-SKV Rent is a car rental landing page built with **Next.js 15**, **React 19**, **TypeScript**, and **Tailwind CSS**. It's a static site exported for deployment on Netlify/GitHub Pages.
+SKV Rent is a car rental landing page built with **Next.js 15**, **React 19**, **TypeScript**, and **Tailwind CSS**. It's a static site exported for deployment on GitHub Pages.
 
 ## Architecture
 
@@ -54,7 +54,7 @@ npm run build-prod   # Full production build (clean → build → export)
 
 ## Deployment
 - **Static export**: `output: 'export'` in `next.config.js`
-- Deploys to Netlify (`netlify.toml`) and GitHub Pages (`.github/workflows/nextjs.yml`)
+- Deploys to GitHub Pages (`.github/workflows/nextjs.yml`), custom domain skvrentsrls.it
 - Assets in `public/assets/images/` and `public/assets/gifs/`
 
 ## When Adding Features
