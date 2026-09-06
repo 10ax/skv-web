@@ -16,15 +16,37 @@ and deployed on **Netlify**.
 
 ## Commands
 
+The package manager is **pnpm** (details below) — use `pnpm`, never `npm`, `npx` or `yarn`.
+
 ```bash
-npm run dev          # local dev server (http://localhost:3000)
-npm run build        # production build + static export → out/
-npm run build-prod   # clean + build (static export happens in `build` via output:'export')
-npm run build-types  # tsc --noEmit type check
-npm run lint         # ESLint 9 (flat config in eslint.config.mjs)
-npm run lint:fix     # eslint . --fix
-npm run format       # prettier --write .
+pnpm install         # install deps (CI and Netlify run `pnpm install --frozen-lockfile`)
+pnpm run dev         # local dev server (http://localhost:3000)
+pnpm run build       # production build + static export → out/
+pnpm run build-prod  # clean + build (static export happens in `build` via output:'export')
+pnpm run build-types # tsc --noEmit type check
+pnpm run lint        # ESLint 9 (flat config in eslint.config.mjs)
+pnpm run lint:fix    # eslint . --fix
+pnpm run format      # prettier --write .
 ```
+
+### Package manager — pnpm 11 (migrated from npm on 2026-09-06)
+- The version is pinned by `package.json → "packageManager": "pnpm@11.24.0"` (corepack). The lockfile is
+  `pnpm-lock.yaml`, imported 1:1 from the old `package-lock.json` (same resolved versions); the old
+  `yarn.lock` was a stale leftover and is gone. Node is pinned to **22** by `.node-version` (read by
+  Netlify, nvm, mise and the GitHub workflow) — pnpm 11 needs Node ≥ 22.13, Next 16 needs ≥ 20.9.
+- **Project settings live in `pnpm-workspace.yaml`** — pnpm 11 ignores a `"pnpm"` field in package.json
+  and non-auth keys in `.npmrc`. Right now it only holds `allowBuilds`: pnpm 11 refuses to install
+  (`ERR_PNPM_IGNORED_BUILDS`; and since every `pnpm run` re-verifies deps, all scripts fail too) until
+  each dependency that ships install scripts is explicitly set to `true`/`false`. `sharp` and
+  `unrs-resolver` are denied on purpose (the file's comments say why). If a new dependency triggers the
+  error, add it there deliberately instead of running `pnpm approve-builds`.
+- **`npm-run-all` was removed**: its `run-s` spawns `$npm_execpath` directly and dies with `EACCES`
+  under corepack's `pnpm.cjs`. `build-prod` is now `pnpm run clean && pnpm run build`. Don't re-add it
+  (`npm-run-all2` is the pnpm-compatible fork if a runner is ever needed).
+- Netlify detects `pnpm-lock.yaml` on its own and honours `packageManager`; `netlify.toml` runs
+  `pnpm run build-prod`. The GitHub Pages workflow uses `pnpm/action-setup@v4` (version from
+  `packageManager`) + `pnpm install --frozen-lockfile`. Husky's pre-commit runs `pnpm exec lint-staged`,
+  which calls `pnpm run build-types`.
 
 ### Linting — ESLint 9 flat config (`eslint.config.mjs`)
 `next lint` was removed in Next 16, so linting runs ESLint directly against
@@ -177,6 +199,19 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
   such values only in `useEffect`) for anything derived from `Date`/`Math.random`/locale at render time.
   (This is also why offer prices use a deterministic manual formatter — see above.)
 - New third-party origins get a `preconnect`/`dns-prefetch` in `_document.tsx` (e.g. `cdn.imagin.studio`).
+
+## Agent tooling (Claude Code)
+
+- Project skills live in `.claude/skills/` and are installed with the `skills` CLI
+  (`pnpm dlx skills add <owner/repo> --skill <name> -a claude-code -y`); `skills-lock.json` records source
+  and hash, so update/remove them through the CLI rather than by hand. Installed on 2026-09-06:
+  `landing-page-conversion-audit` (github/awesome-copilot) for CRO reviews of the landing page, and
+  `performance-optimization` (addyosmani/agent-skills) for Lighthouse / Core Web Vitals work.
+- Site-wide Lighthouse: **unlighthouse** is installed globally (`pnpm add -g unlighthouse`), deliberately not
+  as a devDependency (it would drag puppeteer into every Netlify install). Interactive report:
+  `unlighthouse --site https://skvrentsrls.it`; pass/fail gate: `unlighthouse-ci --site https://skvrentsrls.it --budget 90`.
+- `observability/affordance-invocations.json` is a log written by the ai-literacy-superpowers plugin hooks;
+  it is not part of the site and is not committed.
 
 ## Known issues / cleanup backlog (not yet done)
 
