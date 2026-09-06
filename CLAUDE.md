@@ -56,13 +56,23 @@ pnpm run format      # prettier --write .
 dropped** in the migration (no first-class flat-config support; its rules are largely Prettier's
 job). `next-env.d.ts` and the CJS root config files (`*.config.js`) have targeted overrides.
 
-### Critical CSS is inlined at build (render-blocking fix)
-`next.config.js` sets `experimental.optimizeCss: true`, which inlines critical CSS into
-`<head>` and loads the full stylesheet asynchronously (`media="print" onload=...` + a
-`<noscript>` fallback), removing the render-blocking stylesheet request. The **Pages-Router**
-path needs the **`critters`** devDependency at build time (`beasties` is App-Router-only, so it
-does *not* work here). With Turbopack the stylesheet now emits under `/_next/static/chunks/*.css`. Note `critters` is deprecated upstream but
-runs build-time only (never shipped to the browser).
+### Critical CSS inlining is OFF (it caused layout shift)
+`next.config.js` sets `experimental.optimizeCss: false`. When it was `true`, **critters** inlined the
+above-the-fold CSS and loaded the full stylesheet asynchronously (`media="print" onload=...`), removing the
+render-blocking request. That held while the site was a single image-led landing page. It broke when
+`/privacy/` arrived: critters missed layout rules that page needs above the fold, so it painted unstyled and
+re-flowed. Measured under Lighthouse throttling, three runs each:
+
+| `optimizeCss` | /privacy/ CLS | /privacy/ perf | FCP | / perf |
+|---|---|---|---|---|
+| `true` | 0.431 (2 of 3 runs) | 79–99 | 0.6 s | 96 |
+| `false` | 0 (3 of 3) | 99 | 0.8 s | 96 |
+
+0.2 s of FCP (still inside the "good" band) buys back a Core Web Vital that was in the "poor" band, and the
+stylesheet is only ~5 KB over the wire, so there was little left to win. `critters` stays in
+`devDependencies` so re-enabling is a one-word change — but **re-measure `/privacy/` if you do**, and note
+that `beasties` is App-Router-only and does not work here. With Turbopack the stylesheet emits under
+`/_next/static/chunks/*.css`.
 
 ### Hosting — GitHub Pages (not Netlify)
 Production `https://skvrentsrls.it` is served by **GitHub Pages**: DNS points at GitHub's Pages IPs and

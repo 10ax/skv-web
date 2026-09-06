@@ -39,8 +39,10 @@ const Privacy = () => {
         <Link href="/" className="inline-flex" aria-label={company.name}>
           <img
             src="/assets/images/skv-logo-64w.webp"
+            srcSet="/assets/images/skv-logo-64w.webp 64w, /assets/images/skv-logo-128w.webp 128w"
+            sizes="48px"
             alt={company.name}
-            className="h-12 w-auto"
+            className="h-12 w-12"
             width={48}
             height={48}
           />
