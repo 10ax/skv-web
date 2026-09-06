@@ -85,8 +85,8 @@ content-hashed. `netlify.toml` was removed on 2026-09-06: Netlify no longer serv
 - Styling is Tailwind via template-literal classNames: `className={`...`}` (kept consistent across
   the codebase — match it).
 - Page is composed in `src/pages/index.tsx`. Heavy/below-the-fold sections are `dynamic()`-imported
-  and wrapped in `<LazyShow>` (IntersectionObserver fade-in). `<Canvas>` draws the decorative wave
-  separators between sections.
+  and wrapped in `<LazyShow>` (IntersectionObserver fade-in + slide). Sections sit on one white canvas in
+  a `gap-y-16` grid; the old `<Canvas>` wave separators no longer exist.
 - **`About.tsx` vs `Footer.tsx`:** `About.tsx` is the real "Chi siamo" content section (`id="about"`,
   copy from `config.story`), rendered right after `Product`. `Footer.tsx` is the page footer (logo,
   in-page nav mirror, address/phone/email, social links, copyright) — it has **no** `id="about"` of its
@@ -149,12 +149,15 @@ uses `,` for decimals (see `formatPrice` in `Offers.tsx`) → `€1.455,00`, `�
   {
     "title": "...", "subtitle": "...", "note": "...",
     "categoryOrder": ["City car", ...],           // controls display order of groups
-    "cars": [ { "model": "Fiat Topolino", "price": 192.5, "category": "City car", "electric": true }, ... ]
+    "cars": [ { "model": "Fiat Topolino", "make": "Fiat", "price": 192.5, "category": "City car",
+               "electric": true, "image": "/assets/images/offers/fiat-topolino.webp" }, ... ],
+    "imageCredits": { "_comment": "...", "fiat-topolino.webp": "SKV Rent promotional PDF (PROMO.pdf)", ... }
   }
   ```
   `price` is the "da … al mese" monthly figure in euros. `electric` is optional (BEV only → shows badge).
+  `image` is the local render shown on the card; `imageCredits` records where each file came from (see below).
 - **Component:** `src/components/Offers.tsx` groups cars by `category` (in `categoryOrder`), sorts each
-  group by price ascending, and renders one collapsible `<details>` accordion per category (first open),
+  group by price ascending, and renders one collapsible `<details>` accordion per category (all collapsed by default),
   a responsive card grid (each card = **vehicle image + model + "da … al mese"**), and a
   "Richiedi un preventivo" CTA → `#contact`.
 - **To update prices / add or remove cars:** edit `offers.json` only.
@@ -166,22 +169,18 @@ uses `,` for decimals (see `formatPrice` in `Offers.tsx`) → `€1.455,00`, `�
   `--list-candidates` prints the full unfeatured list. Adding a new car is still manual (image + credit
   + category). Requires `pdftotext` (poppler).
 
-### Vehicle images (imagin.studio)
-- Each card shows a car render fetched at load time from **imagin.studio**:
-  `https://cdn.imagin.studio/getimage?customer=<key>&make=<make>&modelFamily=<family>&angle=23&zoomType=fullscreen`.
-- `make`/`modelFamily` are **derived from `car.model`** in `Offers.tsx` (`parseModel`): first token is the
-  make (two tokens for "Alfa Romeo"/"Land Rover"; "Mercedes" → `mercedes-benz`), the rest becomes the
-  family (lowercased, accent-stripped, hyphenated, trailing model-years dropped — but kept when the year
-  *is* the name, e.g. "Peugeot 2008"). Override per car with `imageMake` / `imageModel` fields in
-  `offers.json` when a render is wrong.
-- The **customer key** and camera `angle` live in `offers.json → imageProvider`. The committed key is the
-  shared **`hrjavascript-mastery` demo key**, which returns **grayscale, watermarked** previews. **Before
-  production, replace it with SKV Rent's own imagin.studio key** to get full-colour, unwatermarked images.
-- imagin serves real images only when the request carries a browser `Referer`/`Origin` (it does so
-  automatically in the browser; server-side `curl` without one gets a fixed fallback image). Unmatched
-  models get imagin's own "no image" graphic; genuine load failures fall back to an inline SVG placeholder.
-- External image host — no local car assets are stored. (Consistent with `logos.json`, which already uses
-  an external logo CDN.)
+### Vehicle images (local WEBP renders)
+- Each card shows `car.image`, a local render in `public/assets/images/offers/<slug>.webp` (one file per
+  featured car, ~15–80 KB), inside a fixed `h-44` box with `object-contain` (Tailwind 2 has no `aspect-*`).
+  A failed load falls back to the inline SVG car silhouette (`PLACEHOLDER_IMAGE` in `Offers.tsx`).
+- **Provenance lives in `offers.json → imageCredits`**, keyed by file name. Renders taken from `PROMO.pdf` need
+  no attribution and manufacturer press images are free for editorial use, but the **Wikimedia Commons files
+  are CC BY-SA and require visible photographer attribution while the page is public**. Add an entry for
+  every new file and keep the credits honest.
+- `make` is stored per car in the JSON, it is no longer derived from `model`. The earlier imagin.studio
+  integration (remote renders, demo customer key, `cdn.imagin.studio` preconnect) is gone; if a remote image
+  host ever comes back, restore a `preconnect` for it in `_document.tsx`.
+
 - **Category taxonomy** (8 segments) and how models were assigned:
   `City car`, `Utilitarie`, `Berline e hatchback`, `Station Wagon`, `SUV e Crossover compatti`,
   `SUV e Crossover medio-grandi`, `Monovolume e Van`, `Sportive e Lusso`. Assignment rule: by body
@@ -202,7 +201,8 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
   `Footer.tsx` uses `suppressHydrationWarning` for exactly this reason. Apply the same guard (or render
   such values only in `useEffect`) for anything derived from `Date`/`Math.random`/locale at render time.
   (This is also why offer prices use a deterministic manual formatter — see above.)
-- New third-party origins get a `preconnect`/`dns-prefetch` in `_document.tsx` (e.g. `cdn.imagin.studio`).
+- Any new third-party origin needs a `preconnect`/`dns-prefetch` in `_document.tsx`. Today there are none:
+  images, scripts and styles are all first-party.
 
 ## Agent tooling (Claude Code)
 
@@ -219,6 +219,9 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 
 ## Known issues / cleanup backlog (not yet done)
 
+- **Image attribution:** `offers.json → imageCredits` marks several offer renders as Wikimedia Commons
+  CC BY-SA, which requires visible photographer attribution while the page is public. Nothing on the page
+  shows those credits yet.
 - **Dead nav link:** `config.navigation` still has "Servizi" → `#features`, but there is **no Features
   component** and nothing renders a `#features` section; `config.features` is unused English placeholder
   (Lorem Ipsum). Either build the section with real Italian copy or remove the nav entry before launch.
