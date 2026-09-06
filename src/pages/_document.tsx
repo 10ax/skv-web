@@ -3,8 +3,6 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import config from '../config/index.json';
 import { AppConfig } from '../utils/AppConfig';
 
-const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
-
 // Structured data for local business SEO
 const structuredData = {
   '@context': 'https://schema.org',
@@ -41,15 +39,9 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale}>
         <Head>
-          <meta name="description" content={AppConfig.description} />
-          <link rel="canonical" href={AppConfig.url} />
-
           <meta property="og:type" content="website" />
           <meta property="og:locale" content={AppConfig.locale} />
-          <meta property="og:url" content={AppConfig.url} />
           <meta property="og:site_name" content={AppConfig.site_name} />
-          <meta property="og:title" content={AppConfig.title} />
-          <meta property="og:description" content={AppConfig.description} />
           <meta
             property="og:image"
             content={`${AppConfig.url}${AppConfig.ogImage}`}
@@ -61,8 +53,6 @@ class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@skvrent" />
           <meta name="twitter:creator" content="@skvrent" />
-          <meta name="twitter:title" content={AppConfig.title} />
-          <meta name="twitter:description" content={AppConfig.description} />
           <meta
             name="twitter:image"
             content={`${AppConfig.url}${AppConfig.ogImage}`}
@@ -74,17 +64,6 @@ class MyDocument extends Document {
           />
           <meta name="author" content={config.company.legalName} />
 
-          <link
-            rel="preload"
-            as="image"
-            href={toWebp(config.mainHero.img)}
-            type="image/webp"
-            // fetchPriority isn't in the pinned @types/react 17 <link> types,
-            // but React 19 renders it (raises the LCP image request priority).
-            {...({
-              fetchPriority: 'high',
-            } as unknown as JSX.IntrinsicElements['link'])}
-          />
           {/* Favicon */}
           <link rel="icon" href="/favicon.ico" sizes="any" />
           <link

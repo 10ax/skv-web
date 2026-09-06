@@ -26,7 +26,7 @@ const Footer = () => {
           {sections.map((section) => (
             <a
               key={section.href}
-              href={`#${section.href}`}
+              href={`/#${section.href}`}
               className="hover:text-primary text-base cursor-pointer text-gray-800 dark:text-gray-400 dark:hover:text-white"
             >
               {section.name}
@@ -111,7 +111,6 @@ const Footer = () => {
           <p className="font-semibold text-gray-800 dark:text-gray-300">
             {legalName}
           </p>
-          <p className="mt-1">{contact.address}</p>
           <p className="mt-1 flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-4 gap-y-1">
             <span>P. IVA e C.F. {legal.vatId}</span>
             <span>REA {legal.rea}</span>
@@ -133,7 +132,7 @@ const Footer = () => {
           className="mt-4 px-4 text-xs leading-normal text-gray-600 dark:text-gray-400"
           suppressHydrationWarning
         >
-          &copy; {new Date().getFullYear()} {legalName}. Tutti i diritti
+          &copy; {new Date().getFullYear()} {legalName} Tutti i diritti
           riservati.
         </p>
       </div>

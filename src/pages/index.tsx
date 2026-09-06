@@ -1,11 +1,14 @@
 import dynamic from 'next/dynamic';
-import Head from 'next/head';
 
 import Header from '../components/Header';
 import LazyShow from '../components/LazyShow';
 import MainHero from '../components/MainHero';
 import MainHeroImage from '../components/MainHeroImage';
+import PageMeta from '../components/PageMeta';
+import config from '../config/index.json';
 import { AppConfig } from '../utils/AppConfig';
+
+const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
 
 const Product = dynamic(() => import('../components/Product'));
 const About = dynamic(() => import('../components/About'));
@@ -19,9 +22,23 @@ const App = () => {
     // grid-cols-1 caps the column at minmax(0, 1fr); without it the
     // marquee's ~7500px un-clipped intrinsic width inflates this whole grid.
     <div className={`bg-background grid grid-cols-1 gap-y-16 overflow-hidden`}>
-      <Head>
-        <title>{AppConfig.title}</title>
-      </Head>
+      <PageMeta
+        title={AppConfig.title}
+        description={AppConfig.description}
+        path="/"
+      >
+        <link
+          rel="preload"
+          as="image"
+          href={toWebp(config.mainHero.img)}
+          type="image/webp"
+          // fetchPriority isn't in the pinned @types/react 17 <link> types,
+          // but React 19 renders it (raises the LCP image request priority).
+          {...({
+            fetchPriority: 'high',
+          } as unknown as JSX.IntrinsicElements['link'])}
+        />
+      </PageMeta>
       <div className={`relative bg-background`}>
         <div className="max-w-7xl mx-auto">
           <div

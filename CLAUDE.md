@@ -6,7 +6,8 @@ consistent with decisions already made. Keep this file up to date when a convent
 ## What this is
 
 Marketing / landing site for **SKV Rent** — a car-rental & long-term-lease company in
-Monteforte Irpino (AV), Italy. Single-page site (Italian language) built as a **static export**
+Monteforte Irpino (AV), Italy. One-page marketing site plus a privacy policy page (Italian
+language), built as a **static export**
 and deployed on **GitHub Pages** (custom domain `skvrentsrls.it`, see "Hosting" below).
 
 - **Next.js 16** using the **Pages Router** (`src/pages`), not the App Router.
@@ -84,7 +85,8 @@ content-hashed. `netlify.toml` was removed on 2026-09-06: Netlify no longer serv
 - Functional components, arrow style, `export default`.
 - Styling is Tailwind via template-literal classNames: `className={`...`}` (kept consistent across
   the codebase — match it).
-- Page is composed in `src/pages/index.tsx`. Heavy/below-the-fold sections are `dynamic()`-imported
+- The landing page is composed in `src/pages/index.tsx`; `src/pages/privacy.tsx` is the second (and only
+  other) route. Heavy/below-the-fold sections are `dynamic()`-imported
   and wrapped in `<LazyShow>` (IntersectionObserver fade-in + slide). Sections sit on one white canvas in
   a `gap-y-16` grid; the old `<Canvas>` wave separators no longer exist.
 - **`About.tsx` vs `Footer.tsx`:** `About.tsx` is the real "Chi siamo" content section (`id="about"`,
@@ -138,10 +140,19 @@ All user-facing copy is **Italian** (`locale: 'it'`). Keep new copy in Italian.
 
 ### SEO
 - Central metadata: `src/utils/AppConfig.ts` (title, description, url `https://skvrentsrls.it`, ogImage).
-- `src/pages/_document.tsx` holds meta/OG/Twitter tags, favicons, `site.webmanifest`, and JSON-LD
+- **Head tags are split by scope.** Anything that names *one* page — `<title>`, description, canonical,
+  `og:url`/`og:title`/`og:description`, the Twitter title/description and the hero `preload` — goes through
+  the `<PageMeta>` component (`src/components/PageMeta.tsx`) inside that page. Only page-independent tags
+  (favicons, manifest, `og:image`, `twitter:card`, author, keywords, JSON-LD) stay in `_document`. Putting a
+  page-specific tag back in `_document` gives every route the landing page's canonical URL, which tells
+  search engines the other pages are duplicates.
+- `src/pages/_document.tsx` holds the shared meta/OG/Twitter tags, favicons, `site.webmanifest`, and JSON-LD
   **AutoRental** structured data (address, hours). Update address/contact there.
 - `next-seo` was intentionally removed (see git history) in favor of hand-written tags — do not re-add it.
 - A custom `_document` is required because Next i18n routing isn't compatible with `next export`.
+- Add every new route to `public/sitemap.xml`. `trailingSlash: true`, so URLs end with `/` (`/privacy/`).
+- Internal navigation uses `next/link`, not `<a href="/...">` (ESLint `no-html-link-for-pages` enforces it).
+  In-page anchors in the shared `Footer` are absolute (`/#offers`) so they also work from `/privacy/`.
 
 ### Number/price formatting — deterministic, not `Intl`
 Do **not** use `toLocaleString('it-IT')` for prices rendered on the page. Node (SSR) and the browser
@@ -194,6 +205,26 @@ uses `,` for decimals (see `formatPrice` in `Offers.tsx`) → `€1.455,00`, `�
   type / size, **except** luxury/performance brands & trims (Porsche, Maserati, Land Rover, Audi S/RS)
   → `Sportive e Lusso`. Pure-electric cars stay in their body segment and get `electric: true`.
   To re-bucket a car, change its `category` in the JSON.
+
+## Legal & privacy
+
+The site is operated by an Italian company, which constrains what the pages must show.
+
+- **Company identification.** The footer prints legal name, registered office, `P. IVA e C.F.`, REA and PEC
+  from `config.about.legal` + `config.company.legalName`. Italian law requires the VAT number on the site
+  (art. 35 DPR 633/72) and the registration details (art. 2250 c.c.). The entity is an **S.r.l.s.**, not an
+  "s.r.l." — don't reintroduce the wrong form. `about.legal.shareCapital` is still **empty**: art. 2250 also
+  wants the paid-up share capital, and the footer omits that line until someone fills the figure in.
+- **Privacy policy.** `src/pages/privacy.tsx` is the art. 13 GDPR notice, linked from the footer nav and from
+  a required consent checkbox next to the contact form's submit button. It describes what the code actually
+  does, so **if the data flow changes the page must change with it**: today the form posts to Web3Forms,
+  which delivers to a Google-hosted mailbox, the site is served by GitHub Pages, and nothing else leaves
+  first-party. The stated retention (24 months) and the sub-processor list are the two things to re-check.
+- **No cookies, and that is load-bearing.** The site sets no cookies, uses no analytics, self-hosts its font
+  and embeds no third-party iframes, which is why it needs no consent banner and why the Google Analytics /
+  Ads code was deleted rather than left dormant. **Adding any tracker, embedded map, or hosted font brings
+  back prior consent under the Garante's 2021 cookie guidelines** — and a banner, and an update to the
+  privacy page. Treat that as a product decision, not a technical one.
 
 ## Performance & accessibility conventions (keep the Lighthouse scores)
 

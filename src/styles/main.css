@@ -6,6 +6,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Tailwind 2 has no `accent-*` utility, so the form checkbox gets the brand
+   colour (`primary`, #003cff) here instead of in a className. */
+.form-checkbox-brand {
+  accent-color: #003cff;
+}
+
 /* Offers accordion (Tailwind 2 has no `open`/`group-open` variant or
    arbitrary `[&::-webkit-details-marker]` selector, so handle these here). */
 #offers summary::-webkit-details-marker {

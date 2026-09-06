@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 type CustomerType = 'private' | 'business';
 
 interface ValidationErrors {
@@ -363,6 +365,31 @@ const Contact = () => {
 
         <form onSubmit={onSubmit} className="flex flex-col gap-5">
           {activeTab === 'private' ? renderPrivateForm() : renderBusinessForm()}
+
+          <div className="flex items-start gap-3 text-left">
+            <input
+              type="checkbox"
+              id="privacy_consent"
+              name="privacy_consent"
+              value="Presa visione dell'informativa privacy"
+              required
+              className="form-checkbox-brand mt-1 h-5 w-5 flex-shrink-0 cursor-pointer"
+            />
+            <label
+              htmlFor="privacy_consent"
+              className="text-sm text-gray-700 dark:text-gray-300"
+            >
+              Ho letto l&rsquo;
+              <Link
+                href="/privacy/"
+                className="text-primary underline hover:text-secondary"
+              >
+                informativa sulla privacy
+              </Link>{' '}
+              e acconsento al trattamento dei miei dati per ricevere una
+              risposta alla richiesta.
+            </label>
+          </div>
 
           <button
             type="submit"
