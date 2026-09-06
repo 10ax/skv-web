@@ -91,7 +91,7 @@ const Menu = () => {
                   aria-controls={menuId}
                   aria-expanded={isMenuOpen}
                   onClick={() => setIsMenuOpen((open) => !open)}
-                  className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
+                  className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
                 >
                   <span className="sr-only">
                     {isMenuOpen ? 'Chiudi il menu' : 'Apri il menu'}
@@ -184,7 +184,7 @@ const Menu = () => {
                   <button
                     type="button"
                     onClick={() => setIsMenuOpen(false)}
-                    className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
+                    className={`bg-background rounded-md p-2 inline-flex items-center justify-center text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary`}
                   >
                     <span className="sr-only">Chiudi il menu</span>
                     <svg
