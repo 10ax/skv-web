@@ -21,12 +21,8 @@ The app is a single-page landing (`src/pages/index.tsx`) composed of lazy-loaded
 - `Contact` → Tabbed form (private/business customers)
 - `About` → Footer with social links
 
-### Contact Form Pattern
-The Contact component (`src/components/Contact/`) demonstrates the project's modular approach:
-- `index.tsx` - Parent with tab state and form submission (Web3Forms API)
-- `PrivateForm.tsx` / `BusinessForm.tsx` - Child form components receive `errors` prop
-- `types.ts` - Shared TypeScript interfaces
-- `validation.ts` - Italian-specific validation (phone, VAT checksum)
+### Contact Form
+`src/components/Contact.tsx` is a single component: tab state (private / business customer), inline Italian validation (phone, VAT checksum) and submission to the Web3Forms API. The old `src/components/Contact/` folder was an unused duplicate and was removed.
 
 ## Key Conventions
 
