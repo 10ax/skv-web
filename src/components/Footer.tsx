@@ -1,9 +1,14 @@
+import Link from 'next/link';
+
 import config from '../config/index.json';
+
+const navLinkClass =
+  'hover:text-primary text-base cursor-pointer text-gray-800 dark:text-gray-400 dark:hover:text-white';
 
 const Footer = () => {
   const { company, about } = config;
   const { logo, name: companyName, legalName } = company;
-  const { socialMedia, sections, contact, legal } = about;
+  const { socialMedia, sections, privacyPage, contact, legal } = about;
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     contact.address
   )}`;
@@ -27,11 +32,16 @@ const Footer = () => {
             <a
               key={section.href}
               href={`/#${section.href}`}
-              className="hover:text-primary text-base cursor-pointer text-gray-800 dark:text-gray-400 dark:hover:text-white"
+              className={navLinkClass}
             >
               {section.name}
             </a>
           ))}
+          {/* A real route rather than an in-page anchor, so it needs
+              next/link (ESLint no-html-link-for-pages). */}
+          <Link href={privacyPage.href} className={navLinkClass}>
+            {privacyPage.name}
+          </Link>
         </nav>
         <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-600 dark:text-gray-400">
           <a

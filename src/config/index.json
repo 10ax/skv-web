@@ -66,6 +66,10 @@
         "href": "contact"
       }
     ],
+    "privacyPage": {
+      "name": "Informativa privacy",
+      "href": "/privacy/"
+    },
     "contact": {
       "address": "Via Taverna Campanile, 260, 83024 Monteforte Irpino (AV)",
       "phone": "+39 377 357 5917",
