@@ -7,3 +7,12 @@ export const AppConfig = {
   url: 'https://skvrentsrls.it',
   ogImage: '/assets/images/skv-logo.webp',
 };
+
+/**
+ * Absolute URL for a page, used for its canonical link and og:url.
+ *
+ * `path` is expected to arrive with both slashes already on it (`/`,
+ * `/privacy/`) because next.config.js sets `trailingSlash: true`; this only
+ * prefixes the origin and does not repair a path that is missing them.
+ */
+export const canonicalUrl = (path: string) => `${AppConfig.url}${path}`;

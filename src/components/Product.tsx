@@ -1,13 +1,6 @@
 import Divider from './Divider';
 import config from '../config/index.json';
-
-const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
-
-const withKnownWidth = (src: string, width: number) => {
-  // Only rewrite sources that already include a -<n>w suffix.
-  if (!/-\d+w\.(png|jpe?g|webp)$/i.test(src)) return src;
-  return src.replace(/-\d+w\.(png|jpe?g|webp)$/i, `-${width}w.$1`);
-};
+import { toWebp, withKnownWidth } from '../utils/images';
 
 // The photos are portrait originals; cropping them into a fixed landscape box
 // keeps each row's text and image at the same visual height instead of leaving

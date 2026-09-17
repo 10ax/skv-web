@@ -1,22 +1,18 @@
 import brandLogosData from '../data/brandLogos.json';
 import offers from '../data/offers.json';
-
-type Car = { make: string };
+import { alternatingRows, makesWithLogos } from '../utils/brands';
 
 const logoFolder = '/assets/images/logos/';
 const logos = brandLogosData.logos as Record<string, string>;
 
 // Unique makes among the cars actually shown in Offers, in the order they
-// first appear there (i.e. cheapest-first within categoryOrder).
-const makes = Array.from(
-  new Set((offers.cars as Car[]).map((car) => car.make))
-).filter((make) => logos[make]);
+// first appear there.
+const makes = makesWithLogos(offers.cars, logos);
 
 // On mobile the single row is split into two shorter rows (alternating
 // makes between them) that scroll in opposite directions, so more logos
 // are visible at once on narrow screens.
-const mobileRowA = makes.filter((_, index) => index % 2 === 0);
-const mobileRowB = makes.filter((_, index) => index % 2 === 1);
+const { rowA: mobileRowA, rowB: mobileRowB } = alternatingRows(makes);
 
 // Rendered 3x back-to-back so the marquee can loop seamlessly (see the
 // matching -33.3333% keyframe in main.css) without a visible seam on wide

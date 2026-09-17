@@ -1,47 +1,12 @@
 import Divider from './Divider';
 import offers from '../data/offers.json';
-
-type Car = {
-  model: string;
-  price: number;
-  category: string;
-  electric?: boolean;
-  image: string;
-};
+import { type Car, formatPrice, groupByCategory } from '../utils/offers';
 
 const cars = offers.cars as Car[];
-
-// Deterministic Italian currency formatting (e.g. 1455 -> "€1.455,00").
-// Avoids relying on Intl/ICU grouping, which is inconsistent across the
-// Node (SSR) and browser runtimes and would trigger a hydration mismatch.
-const formatPrice = (value: number) => {
-  const [integer, decimals] = value.toFixed(2).split('.');
-  const grouped = (integer ?? '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  return `€${grouped},${decimals}`;
-};
 
 // Neutral car-silhouette placeholder shown if an image fails to load.
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23f3f4f6'/%3E%3Cpath fill='%23cbd5e1' d='M18 40a5 5 0 0 0 10 0zm74 0a5 5 0 0 0 10 0zM24 26l6-10a6 6 0 0 1 5-3h26a6 6 0 0 1 5 3l6 10 12 3a4 4 0 0 1 3 4v6a2 2 0 0 1-2 2H11a2 2 0 0 1-2-2v-6a4 4 0 0 1 3-4zm10-9-4 8h20v-8zm22 0v8h18l-4-8z'/%3E%3C/svg%3E";
-
-const groupByCategory = () => {
-  const groups = new Map<string, Car[]>();
-  offers.categoryOrder.forEach((category) => groups.set(category, []));
-
-  cars.forEach((car) => {
-    const bucket = groups.get(car.category);
-    if (bucket) bucket.push(car);
-  });
-
-  return offers.categoryOrder
-    .map((category) => ({
-      category,
-      list: (groups.get(category) ?? [])
-        .slice()
-        .sort((a, b) => a.price - b.price),
-    }))
-    .filter((group) => group.list.length > 0);
-};
 
 const CarCard = ({ car }: { car: Car }) => (
   <div
@@ -82,7 +47,7 @@ const CarCard = ({ car }: { car: Car }) => (
 );
 
 const Offers = () => {
-  const groups = groupByCategory();
+  const groups = groupByCategory(cars, offers.categoryOrder);
 
   return (
     <section className={`bg-background py-8`} id="offers">

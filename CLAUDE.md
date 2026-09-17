@@ -273,3 +273,83 @@ The site scores ~100 across Performance / A11y / Best-Practices / SEO. To keep i
 - `tailwind.config.js` uses the legacy Tailwind 2 style (`purge`, `mode: 'jit'`, `darkMode: true`) while
   `Footer.tsx` uses `dark:` variants — dark mode is not really wired up. Revisit if dark mode is wanted.
 ```
+<!-- autodoc:begin -->
+<!-- autodoc: 351fa38 2026-09-18 -->
+---
+
+## Tests, CI and the pure-helper modules
+
+Added by a documentation-and-tests pass. Nothing above this line changed; no site behaviour
+changed either — the exported HTML and CSS are byte-identical to the build before it.
+
+### Commands
+
+```bash
+pnpm exec vitest run                    # the whole suite
+pnpm exec vitest run tests/<file>       # one file
+```
+
+`vitest` is the only new dependency. Its config is `vitest.config.mjs` — `.mjs` rather than
+`.ts` because `package.json` has no `"type": "module"`, so a `.ts` config is loaded as
+CommonJS and Vite warns about the ESM syntax in it.
+
+### Where the pure logic lives now
+
+Helpers that used to be private constants inside components were moved, unchanged, into
+`src/utils/` so they can be tested. The components import them; behaviour is identical.
+
+- `src/utils/offers.ts` — `formatPrice` (the deterministic `€1.455,00` formatter) and
+  `groupByCategory(cars, categoryOrder)`, both out of `Offers.tsx`. `groupByCategory` now
+  takes its data as arguments instead of closing over the imported JSON.
+- `src/utils/validation.ts` — `validateEmail`, `validatePhone`, `validateVATNumber` and
+  `validateContactForm(formData, customerType)`, out of `Contact.tsx`.
+- `src/utils/images.ts` — `toWebp`, `withKnownWidth`, `withWidthVariant`. These had three
+  copies between `MainHeroImage.tsx`, `Product.tsx`, `Header.tsx` and `pages/index.tsx`;
+  there is now one.
+- `src/utils/brands.ts` — `makesWithLogos` and `alternatingRows`, out of
+  `BrandCarousel.tsx`.
+- `src/utils/AppConfig.ts` — gains `canonicalUrl(path)`, used by `PageMeta.tsx`.
+
+Put new decision logic in these modules rather than in a component, and it gets tested for
+free.
+
+### What the suite pins
+
+Seven files under `tests/`, Node environment, no jsdom and no network. They are
+characterisation tests: they describe today's behaviour, including the parts that are
+slightly wrong, so a change that alters it is visible. The ones worth knowing about:
+
+- `tests/site-content.test.ts` asserts the conventions this file already states and that
+  nothing else enforces: every `navigation` / `about.sections` href resolves to a rendered
+  `id`, `id="about"` is in `About.tsx` and not in `Footer.tsx`, the footer still prints the
+  VAT / REA / PEC details Italian law requires, and no analytics origin, hosted font or extra
+  third-party endpoint has appeared. Run it after touching `src/config/index.json`.
+- `tests/offers-catalog.test.ts` checks `offers.json` against the filesystem: every category
+  is in `categoryOrder` (a car in an unlisted category is silently dropped from the page),
+  every `image` exists under `public/`, every image has an `imageCredits` entry and no entry
+  is orphaned, and every `make` has a logo. Run it after editing the catalog.
+
+Two constraints when writing a test here, both from the existing `tsconfig.json`, which
+type-checks `tests/` along with everything else: the target is **ES5**, so spreading an
+iterator (`[...set]`, `[...str.matchAll()]`) is a type error — use `Array.from`; and
+`@types/node` is pinned at 16 while the runtime is Node 22, so newer Node APIs are absent
+from the types.
+
+### CI
+
+`.github/workflows/ci.yml` runs on every push and pull request: install with
+`--frozen-lockfile --ignore-scripts`, then `lint`, `build-types`, `vitest run`, `build`. It
+publishes nothing. `.github/workflows/nextjs.yml` is untouched and remains the only deploy
+path. Keep the split — do not add deploy steps to `ci.yml` or checks to `nextjs.yml` — and
+run `actionlint .github/workflows/*.yml` after editing either. `.github/dependabot.yml`
+covers the `github-actions` ecosystem only, weekly; the npm ecosystem is deliberately left
+out so nothing bumps the pinned Tailwind 2.
+
+### Further reading
+
+`docs/TROUBLESHOOTING.md` is the operating guide: symptom, the command that confirms it, the
+cause and the fix, for every trap this repo has produced — plus a Known issues section
+listing what is broken and was deliberately left alone (`build-stats` is a no-op, `chunkArr`
+and `logos.json` are dead, the phone field validates twice with different rules, and more).
+Workflows worth repeating are written up as skills in `.claude/skills/`.
+<!-- autodoc:end -->

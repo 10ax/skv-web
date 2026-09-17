@@ -2,7 +2,7 @@ import React from 'react';
 
 import Head from 'next/head';
 
-import { AppConfig } from '../utils/AppConfig';
+import { canonicalUrl } from '../utils/AppConfig';
 
 type PageMetaProps = {
   title: string;
@@ -17,7 +17,7 @@ type PageMetaProps = {
 // putting these there too would give every new page the landing page's
 // canonical URL and Open Graph title.
 const PageMeta = ({ title, description, path, children }: PageMetaProps) => {
-  const url = `${AppConfig.url}${path}`;
+  const url = canonicalUrl(path);
 
   return (
     <Head>

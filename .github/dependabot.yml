@@ -1,0 +1,11 @@
+# Keep the actions used by ci.yml and nextjs.yml current.
+#
+# GitHub Actions only. Bumping npm dependencies here would open pull requests
+# against Next, React and Tailwind — including the deliberately pinned
+# Tailwind 2 — which is the maintainer's decision to make, not a bot's.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

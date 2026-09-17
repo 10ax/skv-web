@@ -3,14 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import config from '../config/index.json';
-
-const withWidthVariant = (src: string, width: number, ext: 'png' | 'webp') => {
-  // Example: /assets/images/skv-logo.webp -> /assets/images/skv-logo-64w.webp
-  // If the file already has a -<n>w suffix, replace it.
-  if (!src) return src;
-  if (!/\.(png|jpe?g|webp)$/i.test(src)) return src;
-  return src.replace(/(-\d+w)?\.(png|jpe?g|webp)$/i, `-${width}w.${ext}`);
-};
+import { withWidthVariant } from '../utils/images';
 
 const Menu = () => {
   const { navigation, company } = config;

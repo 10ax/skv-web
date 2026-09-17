@@ -36,3 +36,6 @@ local
 
 .idea
 .tokensave
+
+# agent tooling output (see CLAUDE.md "Agent tooling"): not part of the site
+observability/

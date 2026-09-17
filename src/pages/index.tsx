@@ -7,8 +7,7 @@ import MainHeroImage from '../components/MainHeroImage';
 import PageMeta from '../components/PageMeta';
 import config from '../config/index.json';
 import { AppConfig } from '../utils/AppConfig';
-
-const toWebp = (src: string) => src.replace(/\.(png|jpe?g)$/i, '.webp');
+import { toWebp } from '../utils/images';
 
 const Product = dynamic(() => import('../components/Product'));
 const About = dynamic(() => import('../components/About'));

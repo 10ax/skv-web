@@ -2,77 +2,16 @@ import React from 'react';
 
 import Link from 'next/link';
 
-type CustomerType = 'private' | 'business';
-
-interface ValidationErrors {
-  [key: string]: string;
-}
+import {
+  type CustomerType,
+  type ValidationErrors,
+  validateContactForm,
+} from '../utils/validation';
 
 const Contact = () => {
   const [result, setResult] = React.useState('');
   const [activeTab, setActiveTab] = React.useState<CustomerType>('private');
   const [errors, setErrors] = React.useState<ValidationErrors>({});
-
-  // Validation functions
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePhone = (phone: string): boolean => {
-    // Italian phone number validation (mobile and landline)
-    // Simplified: optional +39, then 9-11 digits
-    const normalizedPhone = phone.replaceAll(/[\s-]/g, '');
-    const phoneRegex = /^(\+39)?\d{9,11}$/;
-    return phoneRegex.test(normalizedPhone);
-  };
-
-  const validateVATNumber = (vat: string): boolean => {
-    // Italian VAT number validation (11 digits)
-    const vatRegex = /^\d{11}$/;
-    if (!vatRegex.test(vat)) return false;
-
-    // Additional checksum validation for Italian VAT
-    const digits = vat.split('').map((d) => Number.parseInt(d, 10));
-    let sum = 0;
-    for (let i = 0; i < 10; i += 1) {
-      const digit = digits[i];
-      if (digit !== undefined) {
-        const multiplier = i % 2 === 0 ? 1 : 2;
-        let product = digit * multiplier;
-        if (product > 9) {
-          product -= 9;
-        }
-        sum += product;
-      }
-    }
-    const checkDigit = (10 - (sum % 10)) % 10;
-    return checkDigit === digits[10];
-  };
-
-  const validateForm = (formData: FormData): ValidationErrors => {
-    const newErrors: ValidationErrors = {};
-    const email = formData.get('email') as string;
-    const phone = formData.get('phone') as string;
-
-    if (email && !validateEmail(email)) {
-      newErrors.email = 'Inserisci un indirizzo email valido';
-    }
-
-    if (phone && !validatePhone(phone)) {
-      newErrors.phone = 'Inserisci un numero di telefono italiano valido';
-    }
-
-    if (activeTab === 'business') {
-      const vatNumber = formData.get('vat_number') as string;
-      if (vatNumber && !validateVATNumber(vatNumber)) {
-        newErrors.vat_number =
-          'Inserisci una Partita IVA italiana valida (11 cifre)';
-      }
-    }
-
-    return newErrors;
-  };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -85,7 +24,7 @@ const Contact = () => {
       const formData = new FormData(form);
 
       // Validate form
-      const formErrors = validateForm(formData);
+      const formErrors = validateContactForm(formData, activeTab);
       if (Object.keys(formErrors).length > 0) {
         setErrors(formErrors);
         return;
