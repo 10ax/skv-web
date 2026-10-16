@@ -3,8 +3,8 @@
 # This workflow only verifies; it never publishes. Deployment to GitHub Pages is
 # the separate nextjs.yml workflow, which runs on pushes to main.
 #
-# Versions come from the repo, not from this file: pnpm from package.json
-# "packageManager" (read by pnpm/action-setup) and Node from .node-version.
+# The checks live in 10ax/ci-common (tag v1, node.yml): pnpm from package.json
+# "packageManager", Node from .node-version. Warnings, not gates.
 name: CI
 
 on:
@@ -20,36 +20,7 @@ permissions:
   contents: read
 
 jobs:
-  verify:
-    name: Lint, types, tests, build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        # No "version" input: pnpm/action-setup reads package.json → packageManager
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-
-      - name: Install dependencies
-        # --ignore-scripts keeps the "prepare" script (husky install) from
-        # installing git hooks into a runner that will never commit.
-        run: pnpm install --frozen-lockfile --ignore-scripts
-
-      - name: Lint
-        run: pnpm run lint
-
-      - name: Type check
-        run: pnpm run build-types
-
-      - name: Test
-        run: pnpm exec vitest run
-
-      - name: Build static export
-        run: pnpm run build
+  ci:
+    uses: 10ax/ci-common/.github/workflows/node.yml@v1
+    with:
+      typecheck: pnpm run build-types

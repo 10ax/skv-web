@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# SonarQube local scan (warning, never blocking): the engine is `sonar-scan`
+# from dotfiles. Clones without it are silently skipped; `--no-verify` bypasses.
+if command -v sonar-scan >/dev/null 2>&1; then
+  sonar-scan --hook
+fi
+exit 0
