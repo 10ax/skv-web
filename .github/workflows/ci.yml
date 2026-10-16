@@ -24,3 +24,6 @@ jobs:
     uses: 10ax/ci-common/.github/workflows/node.yml@v1
     with:
       typecheck: pnpm run build-types
+      # Runs the suite again under v8 coverage; thresholds (90) live in the
+      # script so they are visible and reviewable in the repo.
+      coverage: pnpm run test:coverage

@@ -132,4 +132,13 @@ describe('validateContactForm', () => {
     });
     expect(validateContactForm(form(entries), 'private')).toEqual({});
   });
+
+  it('says nothing about a missing VAT number, business tab included', () => {
+    expect(
+      validateContactForm(form({ email: 'ordini@example.com' }), 'business')
+    ).toEqual({});
+    expect(validateContactForm(form({ vat_number: '' }), 'business')).toEqual(
+      {}
+    );
+  });
 });
