@@ -11,5 +11,10 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['tests/**/*.test.ts'],
+    coverage: {
+      // lcov is what sonar-scan hands to SonarQube; the 90% thresholds stay on
+      // the test:coverage command line, where CI reads them.
+      reporter: ['text', 'lcov'],
+    },
   },
 });
