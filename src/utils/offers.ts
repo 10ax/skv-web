@@ -28,7 +28,12 @@ export type CarGroup = {
  */
 export const formatPrice = (value: number) => {
   const [integer, decimals] = value.toFixed(2).split('.');
-  const grouped = (integer ?? '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const digits = integer ?? '';
+  let grouped = '';
+  for (let end = digits.length; end > 0; end -= 3) {
+    const chunk = digits.slice(Math.max(0, end - 3), end);
+    grouped = grouped === '' ? chunk : `${chunk}.${grouped}`;
+  }
   return `€${grouped},${decimals}`;
 };
 

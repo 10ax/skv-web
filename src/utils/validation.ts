@@ -14,8 +14,14 @@ export interface ValidationErrors {
 
 /** Same shape as the `pattern` attribute on the email input. */
 export const validateEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  if (/\s/.test(email)) return false;
+  const at = email.indexOf('@');
+  if (at <= 0 || at !== email.lastIndexOf('@') || at === email.length - 1) {
+    return false;
+  }
+  const domain = email.slice(at + 1);
+  const dot = domain.indexOf('.');
+  return dot > 0 && dot < domain.length - 1;
 };
 
 /**
